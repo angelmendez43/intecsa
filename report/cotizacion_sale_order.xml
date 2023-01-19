@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="cotizacion_sale_order">
+       <t t-call="web.html_container">
+           <t t-set="data_report_margin_top" t-value="12"/>
+           <t t-set="data_report_header_spacing" t-value="4"/>
+            <t t-foreach="docs" t-as="o">
+                <div class="article">
+                    <div class="page" style="font-size:16px">
+
+                        <style>
+
+                          div.div_general_encabezado{
+                              margin:auto;
+                              margin-top:1px;
+                              width:100%;
+                              height:190px;
+                          }
+
+                          div.div_izquierdo_titulo{
+                              margin:auto;
+                              margin-top:1px;
+                              width:50%;
+                              float:left;
+                              border-color: black;
+                              border-style: solid;
+                          }
+
+                        </style>
+
+                        <div class="div_general_encabezado">
+                          <div class="div_izquierdo_titulo">
+                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:100%; height:90%; overflow: hidden" alt="Logo"/>
+                          </div>
+                          <div class="div_izquierdo_titulo">
+                            <h5 align="center"><span t-field="o.company_id.name"/></h5>
+                            <p align="center">
+                              <span t-if="o.company_id.street" t-esc="o.company_id.street"/><br/>
+                              <span t-if="o.company_id.city" t-esc="o.company_id.city"/><br/>
+                              <span t-if="o.company_id.state_id.name" t-esc="o.company_id.state_id.name"/><br/>
+                              <span t-if="o.company_id.country_id.name" t-esc="o.company_id.country_id.name"/><br/>
+                              PBX: (502) <span t-if="o.company_id.phone" t-esc="o.company_id.phone"/><br/>
+                              Email: <span t-if="o.company_id.email" t-esc="o.company_id.email"/><br/>
+                              NIT: <span t-if="o.company_id.vat" t-esc="o.company_id.vat"/><br/>
+                            </p>
+
+                          </div>
+
+                        </div>
+
+                        <div class="div_general_encabezado">
+
+                          <div class="div_izquierdo_titulo" style="float:left; width:50%">
+                            Datos del cliente
+                            <div class="div_izquierdo_titulo" style="width:80%; height:118px; background:#E5E8E8">
+                              <span t-esc="o.partner_id.name"/>
+                              <br/>
+                              <span t-esc="o.partner_id.street"/>
+                              <span t-esc="o.partner_id.city"/> <span t-esc="o.partner_id.state_id.name"/>
+                              <br/>
+                              NIT: <span t-esc="o.partner_id.vat"/>
+                            </div>
+                          </div>
+
+                          <div class="div_izquierdo_titulo" style="float:right; width:50%">
+
+                            <table style="width:100%">
+                              <tr>
+                                <td>
+                                  CÓDIGO CLIENTE
+                                </td>
+
+                                <td>
+                                  PEDIDO
+                                </td>
+
+                                <td>
+                                  ASESOR COMERCIAL
+                                </td>
+                              </tr>
+
+                              <tr style="background:#E5E8E8">
+                                <td>
+                                  <span t-if="o.partner_id.codigo" t-esc="o.partner_id.codigo"/>
+                                </td>
+
+                                <td>
+                                  <span t-esc="o.name"/>
+                                </td>
+                                <td>
+                                  <span t-if="o.activity_user_id.name" t-esc="o.activity_user_id.name"/>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  DÍAS CRÉDITO
+                                </td>
+
+                                <td>
+                                  FECHA DE FACTURA
+                                </td>
+
+                                <td>
+                                  FECHA DE VENCIMIENTO
+                                </td>
+                              </tr>
+
+                              <tr style="background:#E5E8E8">
+                                <td>
+                                  <t t-if="o.payment_term_id">
+                                    <span t-esc="o.payment_term_id.name"/>
+                                  </t>
+                                </td>
+
+                                <td>
+
+                                </td>
+
+                                <td>
+
+                                </td>
+                              </tr>
+                            </table>
+
+                          </div>
+
+                        </div>
+
+                        <table style="width:100%">
+                          <tr style="background:#AEB6BF">
+                            <td style="text-align:center">CANTIDAD</td>
+                            <td style="text-align:center">DESCRIPCIÓN</td>
+                            <td style="text-align:center">PRECIO UNITARIO</td>
+                            <td style="text-align:center">IMPORTE</td>
+                          </tr>
+                          <t t-if="o.order_line">
+                            <t t-foreach="o.order_line" t-as="l">
+                              <tr>
+                                <td style="text-align:right">
+                                  <t t-esc="l.product_uom_qty"/>
+                                </td>
+                                <td>
+                                  <t t-esc="l.product_id.name"/>
+                                </td>
+                                <td style="text-align:right">
+                                  <t t-esc="l.price_unit"/>
+                                </td>
+                                <td style="text-align:right">
+                                  <t t-esc="l.price_subtotal"/>
+                                </td>
+                              </tr>
+                            </t>
+                          </t>
+                        </table>
+                        <br/>
+                        <table style="width:100%">
+                          <tr>
+                            <td>NÚMERO DE ABONOS:</td>
+                            <td></td>
+                          </tr>
+
+                          <tr>
+                            <td>MÓNTO DE ABONO:</td>
+                            <td>
+
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>FECHA DE VENCIMIENTO:</td>
+                            <td></td>
+                          </tr>
+
+                          <tr>
+                            <td>Valor en letras:</td>
+                            <td></td>
+                            <td>TOTAL:</td>
+                            <td style="text-align:right"><span t-esc="o.amount_total"/> Q</td>
+                          </tr>
+                        </table>
+                        <br/>
+                        <p>
+                          CONDICIONES DE CRÉDITO: El valor de esta factura quedará sujeto al 5% de recargo por interés mensual en el pago total o parcial que exceda del tiempo estipulado de esta factura.
+                          Únicamente aceptamos reclamos emitidos de 5 días siguientes a la fecha de la factura.
+                          <br/>
+                          A 30 días crédito se servirán pagar Uds. Por esta única Factura Cambiaría girada libre de protesto a la orden de Teranet, S.A, el valor total por el que está excedido o por el último
+                          saldo absoluto que aparezca, valor recibido que acepatarán Uds. A cuenta según nuestro aviso. Esta factura se considera cancelada únicamente por su respectivo recibo de caja.
+                          <br/>
+                        </p>
+
+                        <table style="width:100%">
+                          <tr>
+                            <td>Número de autorización: </td>
+                            <td>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx </td>
+                            <td>Fecha de certificación: </td>
+                            <td>dd/mm/yyyy </td>
+                          </tr>
+
+                          <tr>
+                            <td>Certificador: </td>
+                            <td> </td>
+                            <td>Número Interno: </td>
+                            <td> </td>
+                          </tr>
+
+                          <tr>
+                            <td>NIT: </td>
+                            <td> </td>
+                          </tr>
+
+                        </table>
+
+                        <br/>
+
+                        <table style="width:100%">
+                          <tr style="text-align:center">
+                            <td><img src="/intecsa/static/src/img/1.png" style="width:50%; height:30%"/></td>
+                            <td><img src="/intecsa/static/src/img/2.png" style="width:50%; height:30%"/></td>
+                            <td><img src="/intecsa/static/src/img/3.png" style="width:50%; height:30%"/></td>
+                            <td><img src="/intecsa/static/src/img/4.png" style="width:50%; height:30%"/></td>
+                            <td><img src="/intecsa/static/src/img/5.png" style="width:50%; height:30%"/></td>
+                            <td><img src="/intecsa/static/src/img/6.png" style="width:50%; height:30%"/></td>
+                          </tr>
+
+                          <tr style="text-align:center">
+                            <td><img src="/intecsa/static/src/img/7.png" style="width:50%; height:30%"/></td>
+                            <td><img src="/intecsa/static/src/img/8.png" style="width:50%; height:30%"/></td>
+                            <td><img src="/intecsa/static/src/img/9.png" style="width:50%; height:30%"/></td>
+                            <td><img src="/intecsa/static/src/img/10.png" style="width:50%; height:30%"/></td>
+                            <td><img src="/intecsa/static/src/img/11.png" style="width:50%; height:30%"/></td>
+                            <td><img src="/intecsa/static/src/img/12.jpeg" style="width:50%; height:30%"/></td>
+                          </tr>
+                        </table>
+                        <br/>
+                        <table style="width:100%">
+                          <tr style="text-align:center">
+                            <td align="center"><hr style="width:70%; size:1px; border-top: 1px solid black"/></td>
+
+                            <td align="center"><hr style="width:100%; size:1px; border-top: 1px solid black;"/></td>
+
+                            <td align="center"><hr style="width:70%; size:1px; border-top: 1px solid black;"/></td>
+                          </tr>
+
+                          <tr style="text-align:center">
+                            <td style="text-align:center">Nombre de la persona que recibe</td>
+
+                            <td style="text-align:center"><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>Firma<![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]></td>
+
+                            <td style="text-align:center">CUI de la persona que recibe</td>
+                          </tr>
+
+                        </table>
+
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
