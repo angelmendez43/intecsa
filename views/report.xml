@@ -12,6 +12,14 @@
           <field name="binding_model_id" ref="sale.model_sale_order"/>
           <field name="binding_type">report</field>
       </record>
-
+      <record id="intecsa_hoja_servicios" model="ir.actions.report">
+                <field name="name">Imprimir Hoja de Servicios</field>
+                <field name="model">project.task</field>
+                <field name="report_type">qweb-pdf</field>
+                <field name="report_name">intecsa.report_hoja_servicios</field>
+                <field name="report_file">intecsa.report_hoja_servicios</field>
+                <field name="binding_model_id" ref="project.model_project_task"/>
+                <field name="binding_type">report</field>
+        </record>
     </data>
 </odoo>

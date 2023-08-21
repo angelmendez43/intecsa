@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="intecsa_template_field2" model="ir.model.fields">
+            <field name="name">x_fecha</field>
+            <field name="ttype">date</field>
+            <field name="field_description">Fecha</field>
+            <field name="model_id" model="ir.model" eval="obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.id"/>
+        </record>
+        <record id="intecsa_template_field3" model="ir.model.fields">
+            <field name="name">x_tiempo_instalacion</field>
+            <field name="ttype">char</field>
+            <field name="field_description">Tiempo de instalacion</field>
+            <field name="model_id" model="ir.model" eval="obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.id"/>
+        </record>
+        <record id="intecsa_template_field4" model="ir.model.fields">
+            <field name="name">x_equipo</field>
+            <field name="ttype">text</field>
+            <field name="field_description">Equipo</field>
+            <field name="model_id" model="ir.model" eval="obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.id"/>
+        </record>
+        <record id="intecsa_template_field5" model="ir.model.fields">
+            <field name="name">x_instalacion</field>
+            <field name="ttype">boolean</field>
+            <field name="field_description">Instalacion</field>
+            <field name="model_id" model="ir.model" eval="obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.id"/>
+        </record>
+        <record id="intecsa_template_field6" model="ir.model.fields">
+            <field name="name">x_servicio_tecnico</field>
+            <field name="ttype">boolean</field>
+            <field name="field_description">Servicio Tecnico</field>
+            <field name="model_id" model="ir.model" eval="obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.id"/>
+        </record>
+        <record id="intecsa_template_field7" model="ir.model.fields">
+            <field name="name">x_trabajo_realizado</field>
+            <field name="ttype">text</field>
+            <field name="field_description">Trabajo Realizado</field>
+            <field name="model_id" model="ir.model" eval="obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.id"/>
+        </record>
+        <record id="intecsa_template_field8" model="ir.model.fields">
+            <field name="name">x_repuestos_utilizados</field>
+            <field name="ttype">text</field>
+            <field name="field_description">Repuestos Utilizados</field>
+            <field name="model_id" model="ir.model" eval="obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.id"/>
+        </record>
+        <record id="intecsa_template_field10" model="ir.model.fields">
+            <field name="name">x_nombre_cliente</field>
+            <field name="ttype">char</field>
+            <field name="field_description">Nombre del Cliente</field>
+            <field name="model_id" model="ir.model" eval="obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.id"/>
+        </record>
+        <record id="intecsa_template_field11" model="ir.model.fields">
+            <field name="name">x_firma_cliente</field>
+            <field name="ttype">binary</field>
+            <field name="field_description">Firma del Cliente</field>
+            <field name="model_id" model="ir.model" eval="obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.id"/>
+        </record>
+        <record id="intecsa_template_field12" model="ir.model.fields">
+            <field name="name">x_nombre_tecnico</field>
+            <field name="ttype">char</field>
+            <field name="field_description">Nombre del Tecnico</field>
+            <field name="model_id" model="ir.model" eval="obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.id"/>
+        </record>
+        <record id="intecsa_template_field13" model="ir.model.fields">
+            <field name="name">x_firma_tecnico</field>
+            <field name="ttype">binary</field>
+            <field name="field_description">Firma del Tecnico</field>
+            <field name="model_id" model="ir.model" eval="obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.id"/>
+        </record>
+        <record id="intecsa_worksheet_template2_form_inherit" model="ir.ui.view">
+            <field name="name">intecsa.worksheet.template2.form.inherit</field>
+            <field name="type">form</field>
+            <field name="model" model="ir.model" eval="obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.model"/>
+            <field name="inherit_id" model="ir.ui.view" search="[('name','ilike', obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.model),('type', '=', 'form')]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet" position="replace">
+                    <sheet>
+                        <group invisible="context.get('studio') or context.get('default_x_project_task_id')">
+                            <field name="x_project_task_id" domain="[('is_fsm', '=', True)]"/>
+                        </group>
+                        <group class="o_fsm_worksheet_form">
+                        	<field name="x_fecha"/>
+                        	<field name="x_tiempo_instalacion"/>
+                        	<field name="x_equipo"/>
+                        	<field name="x_instalacion"/>
+                        	<field name="x_servicio_tecnico"/>
+                        	<field name="x_trabajo_realizado"/>
+                            <field name="x_repuestos_utilizados"/>
+                            <field name="x_nombre_cliente"/>
+                            <field name="x_firma_cliente" widget="signature"/>
+                            <field name="x_nombre_tecnico"/>
+                            <field name="x_firma_tecnico" widget="signature"/>
+                        </group>
+                    </sheet>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -9,11 +9,13 @@
     'description': """
 
 """,
-    'depends': ['base','sale','purchase'],
+    'depends': ['base','sale','purchase','project','industry_fsm_report'],
     'data': [
-        'views/sale_report.xml',
         'views/res_partner_views.xml',
-        'report/cotizacion_sale_order.xml'
+        'report/cotizacion_sale_order.xml',
+        'report/report_hoja_servicios.xml',
+        'data/globatronics_report_data.xml',
+        'views/report.xml',
     ],
     'assets':{},
     'installable': True,

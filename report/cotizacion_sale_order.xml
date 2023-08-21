@@ -189,28 +189,6 @@
                           <br/>
                         </p>
 
-                        <table style="width:100%">
-                          <tr>
-                            <td>Número de autorización: </td>
-                            <td>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx </td>
-                            <td>Fecha de certificación: </td>
-                            <td>dd/mm/yyyy </td>
-                          </tr>
-
-                          <tr>
-                            <td>Certificador: </td>
-                            <td> </td>
-                            <td>Número Interno: </td>
-                            <td> </td>
-                          </tr>
-
-                          <tr>
-                            <td>NIT: </td>
-                            <td> </td>
-                          </tr>
-
-                        </table>
-
                         <br/>
 
                         <table style="width:100%">
