@@ -29,7 +29,7 @@
                     </style>
                         <div class="div_general_encabezado">
                           <div class="div_izquierdo_titulo">
-                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:100%; height:70%; overflow: hidden" alt="Logo"/>
+                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:100%; overflow: hidden" alt="Logo"/>
                           </div>
                           <div class="div_izquierdo_titulo" style="text-align:center; font-size:17.81px;">
                             <t align="center"><strong t-field="o.company_id.name"/></t>
@@ -105,7 +105,7 @@
                         	<tr>
                         		<td style="width:33.33%; border-bottom: 1px solid black;"><img style="height:100px" t-att-src="'data:image/png;base64,%s' % to_text(worksheet.x_firma_cliente)"/></td>
                         		<td style="width:33.33%; text-align:center;" rowspan="2">
-                        			<p>Miembro Activo</p><img src="/intecsa/static/src/img/CIG.jpg" width="200px" height="100px" align="center"/></td>
+                        			<p>Miembro Activo</p><img src="/intecsa/static/src/img/CIG.jpg" width="60%" align="center"/></td>
                         		<td style="width:33.33%; border-bottom: 1px solid black;"><img style="height:100px" t-att-src="'data:image/png;base64,%s' % to_text(worksheet.x_firma_tecnico)"/></td>
                         	</tr>
                         	<tr>
