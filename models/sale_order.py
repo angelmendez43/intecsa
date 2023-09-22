@@ -12,4 +12,4 @@ class SaleOrder(models.Model):
 
     entrega_id = fields.Many2one('intecsa.entregas', 'Entrega')
     comentarios = fields.Char('Comentarios')
-    
+    oferta_venta = fields.Char('Ofertas de venta')

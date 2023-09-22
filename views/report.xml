@@ -21,5 +21,34 @@
                 <field name="binding_model_id" ref="project.model_project_task"/>
                 <field name="binding_type">report</field>
         </record>
+        <record id="intecsa_report_entradas_salidas" model="ir.actions.report">
+                <field name="name">Salida de ajustes</field>
+                <field name="model">stock.picking</field>
+                <field name="report_type">qweb-pdf</field>
+                <field name="report_name">intecsa.report_entradas_salidas</field>
+                <field name="report_file">intecsa.report_entradas_salidas</field>
+                <field name="binding_model_id" ref="stock.model_stock_picking"/>
+                <field name="binding_type">report</field>
+        </record>
+
+        <record id="intecsa_report_entradas_salidas_general" model="ir.actions.report">
+                <field name="name">Entradas / Salidas - GENERAL</field>
+                <field name="model">stock.picking</field>
+                <field name="report_type">qweb-pdf</field>
+                <field name="report_name">intecsa.report_entradas_salidas_general</field>
+                <field name="report_file">intecsa.report_entradas_salidas_general</field>
+                <field name="binding_model_id" ref="stock.model_stock_picking"/>
+                <field name="binding_type">report</field>
+        </record>
+
+        <record id="intecsa_report_nota_entrega" model="ir.actions.report">
+                <field name="name">Nota de entrega</field>
+                <field name="model">stock.picking</field>
+                <field name="report_type">qweb-pdf</field>
+                <field name="report_name">intecsa.report_nota_entrega</field>
+                <field name="report_file">intecsa.report_nota_entrega</field>
+                <field name="binding_model_id" ref="stock.model_stock_picking"/>
+                <field name="binding_type">report</field>
+        </record>
     </data>
 </odoo>

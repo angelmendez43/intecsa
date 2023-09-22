@@ -10,6 +10,7 @@
             <field name="user_id" position="after">
                 <field name="entrega_id" string="Entrega"/>
                 <field name="comentarios" string="Comentarios"/>
+                <field name="oferta_venta" string="Ofertas de ventas"/>
             </field>
           </field>
       </record>
