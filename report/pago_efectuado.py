@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import api, models, fields
-from odoo.addons.num_to_words.models.numero_letras import numero_a_letras, numero_a_moneda
+#from odoo.addons.num_to_words.models.numero_letras import numero_a_letras, numero_a_moneda
 import logging, datetime
 
 class ReportPagoEfectuado(models.AbstractModel):
@@ -40,7 +40,7 @@ class ReportPagoEfectuado(models.AbstractModel):
             'doc_ids': docids,
             'doc_model': 'account.payment',
             'docs': docs,
-            'a_letras': self.a_letras,
+            #'a_letras': self.a_letras,
 
         }
         
