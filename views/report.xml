@@ -21,22 +21,22 @@
                 <field name="binding_model_id" ref="project.model_project_task"/>
                 <field name="binding_type">report</field>
         </record>
-        <record id="intecsa_report_entradas_salidas" model="ir.actions.report">
-                <field name="name">Salida de ajustes</field>
+        <record id="intecsa_report_entrada_ajustes" model="ir.actions.report">
+                <field name="name">Entrada de ajustes</field>
                 <field name="model">stock.picking</field>
                 <field name="report_type">qweb-pdf</field>
-                <field name="report_name">intecsa.report_entradas_salidas</field>
-                <field name="report_file">intecsa.report_entradas_salidas</field>
+                <field name="report_name">intecsa.report_entrada_ajustes</field>
+                <field name="report_file">intecsa.report_entrada_ajustes</field>
                 <field name="binding_model_id" ref="stock.model_stock_picking"/>
                 <field name="binding_type">report</field>
         </record>
 
-        <record id="intecsa_report_entradas_salidas_general" model="ir.actions.report">
-                <field name="name">Entradas / Salidas - GENERAL</field>
+        <record id="intecsa_report_salida_ajustes" model="ir.actions.report">
+                <field name="name">Salida de ajustes</field>
                 <field name="model">stock.picking</field>
                 <field name="report_type">qweb-pdf</field>
-                <field name="report_name">intecsa.report_entradas_salidas_general</field>
-                <field name="report_file">intecsa.report_entradas_salidas_general</field>
+                <field name="report_name">intecsa.report_salida_ajustes</field>
+                <field name="report_file">intecsa.report_salida_ajustes</field>
                 <field name="binding_model_id" ref="stock.model_stock_picking"/>
                 <field name="binding_type">report</field>
         </record>
@@ -48,6 +48,26 @@
                 <field name="report_name">intecsa.report_nota_entrega</field>
                 <field name="report_file">intecsa.report_nota_entrega</field>
                 <field name="binding_model_id" ref="stock.model_stock_picking"/>
+                <field name="binding_type">report</field>
+        </record>
+
+        <record id="intecsa_pago_entrada" model="ir.actions.report">
+                <field name="name">Pago Entrada</field>
+                <field name="model">account.payment</field>
+                <field name="report_type">qweb-pdf</field>
+                <field name="report_name">intecsa.pago_entrada</field>
+                <field name="report_file">intecsa.pago_entrada</field>
+                <field name="binding_model_id" ref="account.model_account_payment"/>
+                <field name="binding_type">report</field>
+        </record>
+
+        <record id="intecsa_pago_efectuado" model="ir.actions.report">
+                <field name="name">Pago Efectuado</field>
+                <field name="model">account.payment</field>
+                <field name="report_type">qweb-pdf</field>
+                <field name="report_name">intecsa.pago_efectuado</field>
+                <field name="report_file">intecsa.pago_efectuado</field>
+                <field name="binding_model_id" ref="account.model_account_payment"/>
                 <field name="binding_type">report</field>
         </record>
     </data>

@@ -3,8 +3,8 @@ from odoo import api, models, fields
 from odoo.addons.num_to_words.models.numero_letras import numero_a_letras, numero_a_moneda
 import logging, datetime
 
-class ReportNotaEntrega(models.AbstractModel):
-    _name = 'report.intecsa.report_nota_entrega'
+class ReportPagoEfectuado(models.AbstractModel):
+    _name = 'report.intecsa.pago_efectuado'
 
     def a_letras(self,monto):
         letras = numero_a_moneda(monto)
@@ -29,25 +29,16 @@ class ReportNotaEntrega(models.AbstractModel):
     		'hora': hora,
     	}
     	return informacion
-    	
-    def contiene_lote(self, move_line_ids_without_package):
-    	lote = False
-    	for linea in move_line_ids_without_package:
-    		if linea.lot_id:
-    			lote = True
-    	return lote
-    	
 
     @api.model
     def _get_report_values(self, docids, data=None):
-        docs = self.env['stock.picking'].browse(docids)
+        docs = self.env['account.payment'].browse(docids)
         logging.warning("hola")
         return {
             'convertir_fecha_hora': self.convertir_fecha_hora,
             'convertir_fecha_hora_ms': self.convertir_fecha_hora_ms,
-            'contiene_lote': self.contiene_lote,
             'doc_ids': docids,
-            'doc_model': 'stock.picking',
+            'doc_model': 'account.payment',
             'docs': docs,
             'a_letras': self.a_letras,
 

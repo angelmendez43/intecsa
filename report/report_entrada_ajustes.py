@@ -3,8 +3,8 @@ from odoo import api, models, fields
 from odoo.addons.num_to_words.models.numero_letras import numero_a_letras, numero_a_moneda
 import logging, datetime
 
-class ReportNotaEntrega(models.AbstractModel):
-    _name = 'report.intecsa.report_nota_entrega'
+class ReportEntradaAjustes(models.AbstractModel):
+    _name = 'report.intecsa.report_entrada_ajustes'
 
     def a_letras(self,monto):
         letras = numero_a_moneda(monto)

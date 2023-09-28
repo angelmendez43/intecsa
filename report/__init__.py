@@ -2,6 +2,8 @@
 
 from . import report_hoja_servicios
 from . import cotizacion_sale_order
-from . import report_entradas_salidas
-from . import report_entradas_salidas_general
+from . import report_entrada_ajustes
+from . import report_salida_ajustes
 from . import report_nota_entrega
+from . import pago_entrada
+from . import pago_efectuado
