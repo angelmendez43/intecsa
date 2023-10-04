@@ -26,7 +26,8 @@
                         </style>
                         <div class="div_general_encabezado">
                           <div class="div_izquierdo_titulo" style="float:left">
-                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:75%; overflow: hidden" alt="Logo"/>
+                            <!-- <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:75%; overflow: hidden" alt="Logo"/> -->
+                                                              <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:100%; overflow: hidden" alt="Logo"/>
                           </div>
                           <div class="div_izquierdo_titulo" style="text-align:right">
                             <t align="right"><span>Fecha: </span><t t-esc="convertir_fecha_hora(o.scheduled_date)['fecha']" t-options='{"widget": "date"}'/></t><br/>
@@ -99,15 +100,25 @@
                                 border-color: black;
                                 border-style: solid;
                             }
+                            div.div_izquierdo_titulo {
+                                margin:auto;
+                                margin-top:1px;
+                                width:50%;
+                                float:left;
+                                border-color: black;
+                                border-style: solid;
+                            }
                         </style>
                         <div class="div_general_encabezado">
                             <div class="div_izquierdo_titulo">
-                                <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:50%; overflow: hidden" alt="Logo"/>
+                                <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:100%; overflow: hidden" alt="Logo"/>
                             </div>
                             <div class="div_derecho_titulo" style="text-align:right">
                                 <t align="right"><strong>Fecha: </strong><strong t-esc="convertir_fecha_hora(o.scheduled_date)['fecha']" t-options='{"widget": "date"}'/></t>
                             </div>
                         </div>
+                        <div class="clearfix"/>
+                        <div class="break" style="height:2px"/>
                         <strong style="font-size:21px"><t t-esc="o.partner_id.name"/><br/></strong>
                         <span style="font-size:21px"><t t-esc="o.partner_id.street"/><br/><br/></span>
                         <div class="derecha" style="float:right;">

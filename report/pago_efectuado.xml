@@ -71,8 +71,8 @@
                                             <td style="text-align:center;"><strong>ID de plazo</strong></td>
                                             <td style="text-align:center;"><strong>Importe</strong></td>
                                         </tr>
-                                        <t t-if="o.reconciled_invoice_ids">
-                            			<t t-foreach="o.reconciled_invoice_ids" t-as="l">
+                                        <t t-if="o.reconciled_bill_ids">
+                            			<t t-foreach="o.reconciled_bill_ids" t-as="l">
                                         <tr>
                                             <td style="text-align:center;">
                                                 <t t-esc="l.id"/>
@@ -143,4 +143,3 @@
         </t>
     </template>
 </odoo>
-

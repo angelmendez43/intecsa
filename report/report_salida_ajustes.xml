@@ -23,6 +23,9 @@
                             }
                         </style>
                         <div class="div_general_encabezado">
+                            <div class="div_izquierdo_titulo">
+                                <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:50%; overflow: hidden" alt="Logo"/>
+                            </div>
                             <div class="div_derecho_titulo" style="text-align:left">
                                 <p align="right">Fecha: <t t-esc="convertir_fecha_hora(o.scheduled_date)['fecha']" t-options='{"widget": "date"}'/></p>
                                 <p align="right">Hora: <t t-esc="convertir_fecha_hora(o.scheduled_date)['hora']"/></p>
@@ -173,4 +176,3 @@
         </t>
     </template>
 </odoo>
-
