@@ -35,6 +35,9 @@
                         </div>
                         <div class="izquierda" style="float:left;">
                         	<strong style="font-size:18px">Cliente: </strong><br/>
+                            <t t-if="o.partner_id.parent_id">
+                        	    <strong style="font-size:18px; text-align:left"><t t-esc="o.partner_id.parent_id.name"/></strong><br/>
+                        	</t> 
                         	<strong style="font-size:18px; text-align:left"><t t-esc="o.partner_id.name"/></strong><br/>
                         	<span style="font-size:18px; text-align:left"><t t-esc="o.partner_id.street"/></span>
                         </div>
@@ -73,6 +76,16 @@
                               	</tr>
                             	</t>
                           		</t>
+                          		<t t-foreach="o.sale_id.order_line" t-as="ol">
+                          		    <t t-if="len(ol.move_ids) == 0">
+                            		    <tr>
+                            		        <td style="text-align:center"><span t-esc="ol.product_uom_qty"/></td>
+                            		        <td style="text-align:left"><span t-esc="ol.product_id.default_code"/></td>
+                            		        <td colspan="4" style="text-align:left"><span t-esc="ol.product_id.name"/></td>
+                            		        <td style="text-align:center"><span t-esc="ol.product_uom_qty" t-options="{&quot;widget&quot;: &quot;integer&quot;}"/></td>
+                            		    </tr>
+                          		    </t>
+                          		</t>                                  
                               </table>
                          <br/>
                          <p align="left">
@@ -110,7 +123,7 @@
                         </style>
                         <div class="div_general_encabezado">
                             <div class="div_izquierdo_titulo">
-                                <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:100%; overflow: hidden" alt="Logo"/>
+                                <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:75%; overflow: hidden" alt="Logo"/>
                             </div>
                             <div class="div_derecho_titulo" style="text-align:right">
                                 <t align="right"><strong>Fecha: </strong><strong t-esc="convertir_fecha_hora(o.scheduled_date)['fecha']" t-options='{"widget": "date"}'/></t>
