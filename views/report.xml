@@ -3,7 +3,7 @@
     <data>
 
       <record id="action_report_saleorder_intecsa" model="ir.actions.report">
-          <field name="name">Cotización Intecsa</field>
+          <field name="name">Cotización</field>
           <field name="model">sale.order</field>
           <field name="report_type">qweb-pdf</field>
           <field name="report_name">intecsa.cotizacion_sale_order</field>
@@ -12,6 +12,7 @@
           <field name="binding_model_id" ref="sale.model_sale_order"/>
           <field name="binding_type">report</field>
       </record>
+        
       <record id="intecsa_hoja_servicios" model="ir.actions.report">
                 <field name="name">Imprimir Hoja de Servicios</field>
                 <field name="model">project.task</field>
@@ -21,6 +22,7 @@
                 <field name="binding_model_id" ref="project.model_project_task"/>
                 <field name="binding_type">report</field>
         </record>
+        
         <record id="intecsa_report_entrada_ajustes" model="ir.actions.report">
                 <field name="name">Entrada de ajustes</field>
                 <field name="model">stock.picking</field>
