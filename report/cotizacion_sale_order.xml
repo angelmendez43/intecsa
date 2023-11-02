@@ -48,11 +48,27 @@
                         <div class="div_general_encabezado">
                           <div class="div_izquierdo_titulo" style="float:left; width:50%"><strong>ESTIMADO (A):</strong>
                             <div class="div_izquierdo_titulo" style="width:90%; height:118px; background:#E5E8E8">
-                              <strong><span t-esc="o.partner_id.name"/></strong>
-                              <br/>
-                              <span t-esc="o.partner_shipping_id.street"/><br/>
-                              <span t-esc="o.partner_shipping_id.name"/><br/>
-                              <span t-esc="o.partner_shipping_id.phone"/>
+                                  <t t-if="o.partner_id.parent_id">
+                                      <strong><span t-esc="o.partner_id.parent_id.name"/></strong><br/>
+                                      <strong><span t-esc="o.partner_id.name"/></strong><br/>
+                                    
+                                  </t>
+                                  <t t-else="">
+                                      <strong><span t-esc="o.partner_id.name"/></strong><br/>
+                                  </t>  
+                                  
+                                  
+                                  <t t-if="o.partner_id.id == o.partner_shipping_id.id">
+                                      
+                                      <span t-esc="o.partner_id.street"/><br/>
+                                      <span t-esc="o.partner_id.phone"/>
+                                  </t>
+                                  <t t-else="">
+                                      
+                                      <span t-esc="o.partner_shipping_id.name"/><br/>
+                                      <span t-esc="o.partner_shipping_id.street"/><br/>
+                                      <span t-esc="o.partner_shipping_id.phone"/>
+                                  </t> 
                             </div>
                           </div>
 
