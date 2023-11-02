@@ -32,7 +32,7 @@
 
                         <div class="div_general_encabezado">
                           <div class="div_izquierdo_titulo">
-                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:100%; overflow: hidden" alt="Logo"/>
+                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:75%; overflow: hidden" alt="Logo"/>
                           </div>
                           <div class="div_izquierdo_titulo" style="text-align:center">
                             <t align="center"><strong t-field="o.company_id.name"/></t>
