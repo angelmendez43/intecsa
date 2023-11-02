@@ -22,7 +22,7 @@ class ReportCotizacion(models.AbstractModel):
 
     @api.model
     def _get_report_values(self, docids, data=None):
-        docs = self.env['stock.picking'].browse(docids)
+        docs = self.env['sale.order'].browse(docids)
         logging.warning("hola")
         return {
             'convertir_fecha_hora': self.convertir_fecha_hora,
