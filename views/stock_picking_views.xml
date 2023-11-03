@@ -13,5 +13,15 @@
           </field>
       </record>
 
+      <record id="intecsa_view_picking_form" model="ir.ui.view">
+          <field name="name">intecsa.stock.picking.form</field>
+          <field name="model">stock.picking</field>
+          <field name="inherit_id" ref="stock.view_picking_form" />
+          <field name="groups_id" eval="[(6,0,[ref('intecsa.grupo_validar_picking')])]"/>
+          <field name="arch" type="xml">
+              <button name="button_validate" position="replace"/>
+          </field>
+      </record>
+
     </data>
 </odoo>

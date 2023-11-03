@@ -19,6 +19,7 @@
         'report/report_nota_entrega.xml',
         'report/pago_entrada.xml',
         'report/pago_efectuado.xml',
+        'security/groups.xml',
         'views/report.xml',
         'data/globatronics_report_data.xml',
         'views/sale_order_views.xml',
