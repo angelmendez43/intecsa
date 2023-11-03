@@ -104,13 +104,13 @@
 
                         </div>
 
-                        <table style="width:100%">
-                          <tr style="background:#AEB6BF">
-                            <td style="text-align:center"><strong>QTY</strong></td>
-                            <td style="text-align:center"><strong>CÓDIGO</strong></td>
-                            <td style="text-align:center"><strong>DESCRIPCIÓN</strong></td>
-                            <td style="text-align:center"><strong>PRECIO</strong></td>
-                            <td style="text-align:center"><strong>TOTAL</strong></td>
+                        <table style="width:100%;font-size:14px">
+                          <tr style="background:#3D3D3D; color: WHITE">
+                            <td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>CANTIDAD</strong></td>
+                            <td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>CÓDIGO</strong></td>
+                            <td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>DESCRIPCIÓN</strong></td>
+                            <td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>PRECIO</strong></td>
+                            <td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>TOTAL</strong></td>
                           </tr>
                           <t t-if="o.order_line">
                             <t t-foreach="o.order_line" t-as="l">
@@ -124,29 +124,36 @@
                                 <td style="text-align:left">
                                 	<t t-esc="l.product_id.name"/>
                                 </td>
-                                <td style="text-align:center">
+                                <td style="text-align:right">
                                   <t t-esc="l.price_unit" t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/>
                                 </td>
-                                <td style="text-align:center">
+                                <td style="text-align:right">
                                   <t t-esc="l.price_total" t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/>
                                 </td>
                               </tr>
                             </t>
                             <tr>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>    
+                            <tr>
                               	<td/>
                               	<td/>
                               	<td/>
-                              	<td style="text-align:right"><strong>TOTAL: </strong></td>
-                              	<td style="text-align:center"><strong t-esc="o.amount_total" t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/></td>
+                              	<td style="text-align:center"><strong>TOTAL: </strong></td>
+                              	<td style="text-align:right"><strong t-esc="o.amount_total" t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/></td>
                               </tr>
                           </t>
                         </table>
-
-                        <br/><br/><br/><br/>
-
+                        
+                        <br/>
+                        
                         <strong style="align:left">COMENTARIOS: </strong><br/>
                         <t t-esc="o.comentarios"/>
-
+                        
                     </div>
                     <div class="footer">
                     	<hr/>
