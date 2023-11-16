@@ -1,125 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_hoja_servicios">
-        <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="o">
-                <t t-set="data_report_margin_top" t-value="12"/>
-                <t t-set="data_report_header_spacing" t-value="4"/>
-                <t t-set="o" t-value="o.with_context(lang=user.lang)"/>
-                <div class="article">
-                    <div class="page" style="font-family: 'Minion Pro', sans-serif;">
-                    <style>
-                    	@import url('https://fonts.cdnfonts.com/css/minion-pro');
+  <t t-name="intecsa.report_hoja_servicios">
+          <t t-call="web.html_container">
+              <t t-foreach="docs" t-as="o">
+                  <t t-set="data_report_margin_top" t-value="12"/>
+                  <t t-set="data_report_header_spacing" t-value="4"/>
+                  <t t-set="o" t-value="o.with_context(lang=user.lang)"/>
+                  <div class="article">
+                      <div class="page" style="font-family: 'Minion Pro', sans-serif;">
+                      <style>
+                      	@import url('https://fonts.cdnfonts.com/css/minion-pro');
 
-                    	div.div_general_encabezado{
-                              margin:auto;
-                              margin-top:1px;
-                              width:100%;
-                              height:190px;
-                          }
+                      	div.div_general_encabezado{
+                                margin:auto;
+                                margin-top:1px;
+                                width:100%;
+                                height:190px;
+                            }
 
-                          div.div_izquierdo_titulo{
-                              margin:auto;
-                              margin-top:1px;
-                              width:50%;
-                              float:left;
-                              border-color: black;
-                              border-style: solid;
-                          }
-                    </style>
-                        <div class="div_general_encabezado">
-                          <div class="div_izquierdo_titulo">
-                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:100%; overflow: hidden" alt="Logo"/>
+                            div.div_izquierdo_titulo{
+                                margin:auto;
+                                margin-top:1px;
+                                width:50%;
+                                float:left;
+                                border-color: black;
+                                border-style: solid;
+                            }
+                      </style>
+                          <div class="div_general_encabezado">
+                            <div class="div_izquierdo_titulo">
+                              <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:100%; overflow: hidden" alt="Logo"/>
+                            </div>
+                            <div class="div_izquierdo_titulo" style="text-align:center; font-size:17.81px;">
+                              <t align="center"><strong t-field="o.company_id.name"/></t>
+                              <p align="center">
+                                <span t-if="o.company_id.street" t-esc="o.company_id.street"/><br/>
+                                PBX: <span t-if="o.company_id.phone" t-esc="o.company_id.phone"/><br/>
+                                Email: <span t-if="o.company_id.email" t-esc="o.company_id.email"/><br/>
+                                <span t-if="o.company_id.website" t-esc="o.company_id.website"/><br/>
+                              </p>
+                            </div>
                           </div>
-                          <div class="div_izquierdo_titulo" style="text-align:center; font-size:17.81px;">
-                            <t align="center"><strong t-field="o.company_id.name"/></t>
-                            <p align="center">
-                              <span t-if="o.company_id.street" t-esc="o.company_id.street"/><br/>
-                              PBX: <span t-if="o.company_id.phone" t-esc="o.company_id.phone"/><br/>
-                              Email: <span t-if="o.company_id.email" t-esc="o.company_id.email"/><br/>
-                              <span t-if="o.company_id.website" t-esc="o.company_id.website"/><br/>
-                            </p>
+                          <div class="derecha" style="float:right; color:red;">
+                          	<strong style="font-size:21px">Nº <t t-esc="o.id"/></strong>
                           </div>
-                        </div>
-                        <div class="derecha" style="float:right; color:red;">
-                        	<strong style="font-size:21px">Nº <t t-esc="o.id"/></strong>
-                        </div>
-                        <div class="medio" style="text-align:center;">
-                        		<p style="font-size:19px"><strong>REPORTE DE PROYECTO</strong></p>
-                        </div>
-                        <div class="clearfix"/>
-                        <div class="break" style="height:2px"/>
-                        <table style="width: 100%; font-size:15.25px">
-                            <tr>
-                                <td style="width: 50%; border-left: 1px solid black; border-top: 1px solid black; padding-left:5px;">
-                                    <p><strong>PROYECTO:  </strong><t t-esc="o.name"/></p>
-                                </td>
-                                <td style="width: 50%; border-top: 1px solid black; border-right: 1px solid black; border-left: 1px solid black; padding-left:5px;">
-                                     <p><strong>FECHA:  </strong><t t-esc="worksheet.x_fecha"/></p>
-                                </td>
-                            </tr>
-                            <tr>
-                            	<td style="width: 50%; border-left: 1px solid black; border-bottom: 1px solid black; padding-left:5px;">
-                                    <p><strong>TECNICO ASIGNADO:  </strong><t t-esc="o.user_ids[0].name"/></p>
-                                </td>
-                                <td style="width: 50%; border-right: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; padding-left:5px;">
-                                     <p><strong>TIEMPO DE INSTALACION:  </strong><t t-esc="worksheet.x_tiempo_instalacion"/></p>
-                                </td>
-                            </tr>
-                        </table>
-                        <br/>
-                        <table style="width: 100%; border: 1px solid black; font-size:15.25px">
-                        	<tr>
-                        		<td style="width: 50%; padding-left:5px;">
-                        			<p><strong>EQUIPO:  </strong><br/><t t-esc="worksheet.x_equipo"/></p>
-                        		</td>
-                        		<td style="text-align: left; padding-left:5px;">
-                        			<p><strong>INSTALACION:  </strong><t t-if="worksheet.x_instalacion==True"/>✓</p>
-                        		</td>
-                        	</tr>
-                        	<tr>
-                        		<td/>
-                        		<td style="text-align: left; padding-left:5px;">
-                        			<p><strong>SERVICIO TECNICO:  </strong><t t-if="worksheet.x_servicio_tecnico==True"/>✓</p>
-                        		</td>
-                        	</tr>
-                        </table>
-                        <br/>
-                        <table style="width: 100%; height: 220px; border: 1px solid black; font-size:15.25px" border="1px">
-                        	<tr>
-                        		<td style="width:50%; padding-left:5px;">
-                        			<p><strong>TRABAJO REALIZADO:  </strong><br/><t t-esc="worksheet.x_trabajo_realizado"/></p>
-                        		</td>
-                        	</tr>
-                        </table>
-                        <br/>
-                        <table style="width: 100%; height: 185px; border: 1px solid black; font-size:15.25px" border="1px">
-                        	<tr>
-                        		<td style="width:50%; padding-left:5px;">
-                        			<p><strong>REPUESTOS UTILIZADOS:</strong><br/><t t-esc="worksheet.x_repuestos_utilizados"/></p>
-                        		</td>
-                        	</tr>
-                        </table>
-                        <br/><br/>
-                        <table style="width: 100%; height:10%; font-size:15.25px" border="1px">
-                        	<tr>
-                        		<td style="width:33.33%; border-bottom: 1px solid black;"><img style="height:100px" t-att-src="'data:image/png;base64,%s' % to_text(worksheet.x_firma_cliente)"/></td>
-                        		<td style="width:33.33%; text-align:center;" rowspan="2">
-                        			<p>Miembro Activo</p><img src="/intecsa/static/src/img/CIG.jpg" width="60%" align="center"/></td>
-                        		<td style="width:33.33%; border-bottom: 1px solid black;"><img style="height:100px" t-att-src="'data:image/png;base64,%s' % to_text(worksheet.x_firma_tecnico)"/></td>
-                        	</tr>
-                        	<tr>
-                        		<td style="text-align:center"><t t-esc="worksheet.x_nombre_cliente"/><br/>
-                        			<p>NOMBRE Y FIRMA CLIENTE</p>
-                        		</td>
-                        		<td style="text-align:center"><t t-esc="worksheet.x_nombre_tecnico"/><br/>
-                        			<p>NOMBRE Y FIRMA TECNICO</p>
-                        		</td>
-                        	</tr>
-                        </table>
-                    </div>
-                </div>
-            </t>
-        </t>
-    </template>
+                          <div class="medio" style="text-align:center;">
+                          		<p style="font-size:19px"><strong>REPORTE DE PROYECTO</strong></p>
+                          </div>
+                          <div class="clearfix"/>
+                          <div class="break" style="height:2px"/>
+                          <table style="width: 100%; font-size:15.25px">
+                              <tr>
+                                  <td style="width: 50%; border-left: 1px solid black; border-top: 1px solid black; padding-left:5px;">
+                                      <p><strong>PROYECTO:  </strong><t t-esc="o.name"/></p>
+                                  </td>
+                                  <td style="width: 50%; border-top: 1px solid black; border-right: 1px solid black; border-left: 1px solid black; padding-left:5px;">
+                                       <p><strong>FECHA:  </strong><t t-esc="worksheet.x_fecha"/></p>
+                                  </td>
+                              </tr>
+                              <tr>
+                              	<td style="width: 50%; border-left: 1px solid black; border-bottom: 1px solid black; padding-left:5px;">
+                                      <p><strong>TECNICO ASIGNADO:  </strong><t t-esc="o.user_ids[0].name"/></p>
+                                  </td>
+                                  <td style="width: 50%; border-right: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; padding-left:5px;">
+                                       <p><strong>TIEMPO DE INSTALACION:  </strong><t t-esc="worksheet.x_tiempo_instalacion"/></p>
+                                  </td>
+                              </tr>
+                          </table>
+                          <br/>
+                          <table style="width: 100%; border: 1px solid black; font-size:15.25px">
+                          	<tr>
+                          		<td style="width: 50%; padding-left:5px;">
+                          			<p><strong>EQUIPO:  </strong><br/><t t-esc="worksheet.x_equipo"/></p>
+                          		</td>
+                          		<td style="text-align: left; padding-left:5px;">
+                          			<p><strong>INSTALACION:  </strong><t t-if="worksheet.x_instalacion==True"/>✓</p>
+                          		</td>
+                          	</tr>
+                          	<tr>
+                          		<td/>
+                          		<td style="text-align: left; padding-left:5px;">
+                          			<p><strong>SERVICIO TECNICO:  </strong><t t-if="worksheet.x_servicio_tecnico==True"/>✓</p>
+                          		</td>
+                          	</tr>
+                          </table>
+                          <br/>
+                          <table style="width: 100%; height: 220px; border: 1px solid black; font-size:15.25px" border="1px">
+                          	<tr>
+                          		<td style="width:50%; padding-left:5px;">
+                          			<p><strong>TRABAJO REALIZADO:  </strong><br/><t t-esc="worksheet.x_trabajo_realizado"/></p>
+                          		</td>
+                          	</tr>
+                          </table>
+                          <br/>
+                          <table style="width: 100%; height: 185px; border: 1px solid black; font-size:15.25px" border="1px">
+                          	<tr>
+                          		<td style="width:50%; padding-left:5px;">
+                          			<p><strong>REPUESTOS UTILIZADOS:</strong><br/><t t-esc="worksheet.x_repuestos_utilizados"/></p>
+                          		</td>
+                          	</tr>
+                          </table>
+                          <br/><br/>
+                          <table style="width: 100%; height:10%; font-size:15.25px" border="1px">
+                          	<tr>
+                          		<td style="width:33.33%; border-bottom: 1px solid black;"><img style="height:100px" t-att-src="'data:image/png;base64,%s' % to_text(worksheet.x_firma_cliente)"/></td>
+                          		<td style="width:33.33%; text-align:center;" rowspan="2">
+                          			<p>Miembro Activo</p><img src="/intecsa/static/src/img/CIG.jpg" width="60%" align="center"/></td>
+                          		<td style="width:33.33%; border-bottom: 1px solid black;"><img style="height:100px" t-att-src="'data:image/png;base64,%s' % to_text(worksheet.x_firma_tecnico)"/></td>
+                          	</tr>
+                          	<tr>
+                          		<td style="text-align:center"><t t-esc="worksheet.x_nombre_cliente"/><br/>
+                          			<p>NOMBRE Y FIRMA CLIENTE</p>
+                          		</td>
+                          		<td style="text-align:center"><t t-esc="worksheet.x_nombre_tecnico"/><br/>
+                          			<p>NOMBRE Y FIRMA TECNICO</p>
+                          		</td>
+                          	</tr>
+                          </table>
+                      </div>
+                  </div>
+              </t>
+          </t>
+      </t>
 </odoo>

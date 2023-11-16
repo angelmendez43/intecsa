@@ -1,142 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="pago_entrada">
-        <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="o">
-                <div class="article">
-                    <div class="page" style="font-family: 'Minion Pro', sans-serif; font-size:10.25x">
-                        <style>
-                            @import url('https://fonts.cdnfonts.com/css/minion-pro');
-                            div.div_general_encabezado {
-                                margin:auto;
-                                margin-top:1px;
-                                width:100%;
-                                height:100px;
-                            }
-                            div.div_derecho_titulo {
-                                margin:auto;
-                                margin-top:1px;
-                                width:50%;
-                                float:right;
-                                border-color: black;
-                                border-style: solid;
-                            }
-                            div.div_izquierdo_titulo {
-                                margin:auto;
-                                margin-top:1px;
-                                width:50%;
-                                float:left;
-                                border-color: black;
-                                border-style: solid;
-                            }
-                            table, td {
-                            	border: 1px solid black;
-                            	border-collapse: collapse;
-                            }
-                        </style>
-                        <div class="div_general_encabezado">
-                            <div class="div_izquierdo_titulo">
-                                <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:50%; overflow: hidden" alt="Logo"/>
-                            </div>
-                            <div class="div_derecho_titulo" style="text-align:right">
-                                <t align="right"><strong>Fecha: </strong><strong t-esc="o.date" t-options='{"widget": "date"}'/></t>
-                            </div>
-                        </div>
-                        <div class="clearfix"/>
-                        <div class="break" style="height:2px"/>
-                        <div class="izquierdaC" style="float:left;">
-                        	<strong style="font-size:21px">Cliente: </strong><br/>
-                        	<strong style="font-size:21px; text-align:left"><t t-esc="o.partner_id.name"/></strong><br/>
-                        	<span style="font-size:21px; text-align:left"><t t-esc="o.partner_id.street"/></span>
-                        </div>
-                        <div class="clearfix"/>
-                        <div class="break" style="height:2px"/>
-                        <div class="derecha" style="float:right;">
-                            <strong style="font-size:21px">Original</strong>
-                        </div>
-                        <div class="izquierda" style="float:left;">
-                            <strong style="font-size:21px">Entrada</strong>
-                        </div>
-                        <div class="medio" style="text-align:center;">
-                            <strong style="font-size:21px"><t t-esc="o.name"/></strong>
-                        </div>
-                        <div class="clearfix"/>
-                        <div class="break" style="height:2px"/>
-                                    <table style="width:100%">
-                                        <tr style="background:#AEB6BF">
-                                            <td style="text-align:center;"><strong>#</strong></td>
-                                            <td style="text-align:center;"><strong>Doc. pagado</strong></td>
-                                            <td style="text-align:center;"><strong>Nº documento</strong></td>
-                                            <td style="text-align:center;"><strong>Fecha</strong></td>
-                                            <td style="text-align:center;"><strong>ID de plazo</strong></td>
-                                            <td style="text-align:center;"><strong>Número de referencia</strong></td>
-                                            <td style="text-align:center;"><strong>Importe</strong></td>
-                                        </tr>
-                        				<t t-if="o.reconciled_invoice_ids">
-                            			<t t-foreach="o.reconciled_invoice_ids" t-as="l">
-                                        <tr>
-                                            <td style="text-align:center;">
-                                                <t t-esc="l.id"/>
-                                            </td>
-                                            <td style="text-align:center;">
-                                                Factura de deudores
-                                            </td>
-                                            <td style="text-align:center;">
-                                                <t t-esc="l.name"/>
-                                            </td>
-                                            <td style="text-align:center;">
-                                                <t t-esc="l.invoice_date" t-options='{"widget": "date"}'/>
-                                            </td>
-                                            <td style="text-align:center;">
-                                                Pendiente
-                                            </td>
-                                            <td style="text-align:center;">
-                                                <t t-esc="l.fel_serie"/> - <t t-esc="l.fel_numero"/>
-                                            </td>
-                                            <td style="text-align:center;">
-                                                <t t-esc="l.amount_total_signed" t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/>
-                                            </td>
-                                        </tr>
-                                		</t>
-                                		</t>
-                                    </table>
-                                <br/>
-                        <div class="izquierda" style="float:left;">
-                    	<p align="left">
-                         	Fecha de transferencia	<t t-esc="o.date" t-options='{"widget": "date"}'/><br/>
-                        </p>
-                        </div>
-                        <div class="derecha" style="float:right;">
-                        <table style="100%">
-                        	<tr>
-                        		<td style="background:#AEB6BF; padding-left:5px; padding-right:5px; width:200px">Transferencia bancaria</td>
-                        		<td style="text-align:right; padding-left:5px; padding-right:5px; width:125px"><t t-esc="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/></td>
-                        	</tr>
-                        </table>
-                        </div>
-                        <div class="clearfix"/>
-                        <div class="break" style="height:2px"/>
-                        <br/><br/><br/><br/>
-                        <div class="izquierda" style="float:left;">
-                        <p align="left">
-                        	Autor	<t t-esc="o.user_id.name"/><br/><br/>
-                        	Comentarios	<t t-esc="o.descripcion"/><p></p><br/><br/><br/><br/><br/>
-                        	Firma:	____________________
-                        </p>
-                        </div>
-                        <div class="derecha" style="float:right;">
-                        <table style="100%">
-                        	<tr>
-                        		<td style="background:#AEB6BF; padding-left:5px; padding-right:5px; text-align:left; width:175px"><strong>Total</strong></td>
-                        		<td style="text-align:right; padding-left:5px; padding-right:5px; text-align:right; width:125px"><t t-esc="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/></td>
-                        	</tr>
-                        </table>
-                        </div>
-                        <div class="clearfix"/>
-                        <div class="break" style="height:2px"/>
-                    </div>
-                </div>
-            </t>
-        </t>
-    </template>
+  <t t-name="intecsa.pago_entrada">
+      <t t-call="web.html_container">
+          <t t-foreach="docs" t-as="o">
+              <div class="article">
+                  <div class="page" style="font-family: 'Minion Pro', sans-serif; font-size:10.25x">
+                      <style>
+                          @import url('https://fonts.cdnfonts.com/css/minion-pro');
+                          div.div_general_encabezado {
+                              margin:auto;
+                              margin-top:1px;
+                              width:100%;
+                              height:100px;
+                          }
+                          div.div_derecho_titulo {
+                              margin:auto;
+                              margin-top:1px;
+                              width:50%;
+                              float:right;
+                              border-color: black;
+                              border-style: solid;
+                          }
+                          div.div_izquierdo_titulo {
+                              margin:auto;
+                              margin-top:1px;
+                              width:50%;
+                              float:left;
+                              border-color: black;
+                              border-style: solid;
+                          }
+                          table, td {
+                          	border: 1px solid black;
+                          	border-collapse: collapse;
+                          }
+                      </style>
+                      <div class="div_general_encabezado">
+                          <div class="div_izquierdo_titulo">
+                              <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:50%; overflow: hidden" alt="Logo"/>
+                          </div>
+                          <div class="div_derecho_titulo" style="text-align:right">
+                              <t align="right"><strong>Fecha: </strong><strong t-esc="o.date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></t>
+                          </div>
+                      </div>
+                      <div class="clearfix"/>
+                      <div class="break" style="height:2px"/>
+                      <div class="izquierdaC" style="float:left;">
+                      	<strong style="font-size:21px">Cliente: </strong><br/>
+                      	<strong style="font-size:21px; text-align:left"><t t-esc="o.partner_id.name"/></strong><br/>
+                      	<span style="font-size:21px; text-align:left"><t t-esc="o.partner_id.street"/></span>
+                      </div>
+                      <div class="clearfix"/>
+                      <div class="break" style="height:2px"/>
+                      <div class="derecha" style="float:right;">
+                          <strong style="font-size:21px">Original</strong>
+                      </div>
+                      <div class="izquierda" style="float:left;">
+                          <strong style="font-size:21px">Entrada</strong>
+                      </div>
+                      <div class="medio" style="text-align:center;">
+                          <strong style="font-size:21px"><t t-esc="o.name"/></strong>
+                      </div>
+                      <div class="clearfix"/>
+                      <div class="break" style="height:2px"/>
+                                  <table style="width:100%">
+                                      <tr style="background:#AEB6BF">
+                                          <td style="text-align:center;"><strong>#</strong></td>
+                                          <td style="text-align:center;"><strong>Doc. pagado</strong></td>
+                                          <td style="text-align:center;"><strong>Nº documento</strong></td>
+                                          <td style="text-align:center;"><strong>Fecha</strong></td>
+                                          <td style="text-align:center;"><strong>Número de referencia</strong></td>
+                                          <td style="text-align:center;"><strong>Importe</strong></td>
+                                      </tr>
+                      				<t t-if="o.reconciled_invoice_ids">
+                          			<t t-foreach="o.reconciled_invoice_ids" t-as="l">
+                                      <tr>
+                                          <td style="text-align:center;">
+                                              <t t-esc="l.id"/>
+                                          </td>
+                                          <td style="text-align:center;">
+                                              Factura de deudores
+                                          </td>
+                                          <td style="text-align:center;">
+                                              <t t-esc="l.name"/>
+                                          </td>
+                                          <td style="text-align:center;">
+                                              <t t-esc="l.invoice_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                                          </td>
+                                          <td style="text-align:center;">
+                                              <t t-esc="l.fel_serie"/> - <t t-esc="l.fel_numero"/>
+                                          </td>
+                                          <td style="text-align:center;">
+                                              <t t-esc="l.amount_total_signed" t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/>
+                                          </td>
+                                      </tr>
+                              		</t>
+                              		</t>
+                                  </table>
+                              <br/>
+                      <div class="izquierda" style="float:left;">
+                  	<p align="left">
+                       	Fecha de transacción	<t t-esc="o.date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/><br/>
+                        Transacción:<br/>
+                        <span t-field="o.journal_id.tipo_transaccion"/> - <span t-field="o.ref"/>                        
+
+                      </p>
+                      </div>
+                      <div class="derecha" style="float:right;">
+                      <table style="100%">
+                      	<tr>
+                      		<td style="background:#AEB6BF; padding-left:5px; padding-right:5px; width:200px">Transferencia bancaria</td>
+                      		<td style="text-align:right; padding-left:5px; padding-right:5px; width:125px"><t t-esc="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/></td>
+                      	</tr>
+                      </table>
+                      </div>
+                      <div class="clearfix"/>
+                      <div class="break" style="height:2px"/>
+                      <br/><br/><br/><br/>
+                      <div class="izquierda" style="float:left;">
+                      <p align="left">
+                      	Autor	<t t-esc="o.user_id.name"/><br/><br/>
+                      	Comentarios	<t t-esc="o.descripcion"/><p/><br/><br/><br/><br/><br/>
+                      	Firma:	____________________
+                      </p>
+                      </div>
+                      <div class="derecha" style="float:right;">
+                      <table style="100%">
+                      	<tr>
+                      		<td style="background:#AEB6BF; padding-left:5px; padding-right:5px; text-align:left; width:175px"><strong>Total</strong></td>
+                      		<td style="text-align:right; padding-left:5px; padding-right:5px; text-align:right; width:125px"><t t-esc="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.company_id.currency_id}"/></td>
+                      	</tr>
+                      </table>
+                      </div>
+                      <div class="clearfix"/>
+                      <div class="break" style="height:2px"/>
+                  </div>
+              </div>
+          </t>
+      </t>
+  </t>
 </odoo>

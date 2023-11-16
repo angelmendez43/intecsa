@@ -9,9 +9,10 @@
     'description': """
 
 """,
-    'depends': ['base','sale','purchase', 'project', 'web_studio', 'industry_fsm_report','stock'],
+    'depends': ['base','sale','purchase', 'project', 'web_studio', 'industry_fsm_report','stock','account'],
     'data': [
         'views/res_partner_views.xml',
+        'views/account_journal_views.xml',
         'report/cotizacion_sale_order.xml',
         'report/report_hoja_servicios.xml',
         'report/report_entrada_ajustes.xml',

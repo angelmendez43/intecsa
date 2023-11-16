@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="intecsa_view_account_journal_extra_form" model="ir.ui.view">
+      <field name="name">intecsa.view.account.journal.extra.form</field>
+      <field name="model">account.journal</field>
+      <field name="inherit_id" ref="account.view_account_journal_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='code']" position="after">
+            <field name="tipo_transaccion" string="Tipo transacción"/>
+        </xpath>
+      </field>
+
+  </record>
+
+</odoo>
