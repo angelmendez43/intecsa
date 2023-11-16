@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <t t-name="intecsa.pago_entrada">
+  <template id="intecsa.pago_efectuado">
       <t t-call="web.html_container">
           <t t-foreach="docs" t-as="o">
               <div class="article">
@@ -101,7 +101,7 @@
                   	<p align="left">
                        	Fecha de transacción	<t t-esc="o.date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/><br/>
                         Transacción:<br/>
-                        <span t-field="o.journal_id.tipo_transaccion"/> - <span t-field="o.ref"/>                        
+                        <span t-field="o.journal_id.tipo_transaccion"/> - <span t-field="o.ref"/>
 
                       </p>
                       </div>
@@ -137,5 +137,5 @@
               </div>
           </t>
       </t>
-  </t>
+  </template>
 </odoo>

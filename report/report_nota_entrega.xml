@@ -1,204 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <t t-name="intecsa.report_nota_entrega">
-         <t t-call="web.html_container">
-             <t t-set="data_report_margin_top" t-value="12"/>
-             <t t-set="data_report_header_spacing" t-value="4"/>
-              <t t-foreach="docs" t-as="o">
-                  <div class="article">
-                      <div class="page" style="font-family: 'Minion Pro', sans-serif; font-size:10.25x">
-                          <style>
-                            @import url('https://fonts.cdnfonts.com/css/minion-pro');
-                            div.div_general_encabezado{
-                                margin:auto;
-                                margin-top:1px;
-                                width:100%;
-                                height:190px;
-                            }
-                            div.div_izquierdo_titulo{
-                                margin:auto;
-                                margin-top:1px;
-                                width:50%;
-                                float:right;
-                                border-color: black;
-                                border-style: solid;
-                            }
-                          </style>
-                          <div class="div_general_encabezado">
-                            <div class="div_izquierdo_titulo" style="float:left">
-                              <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:75%; overflow: hidden" alt="Logo"/>
-                            </div>
-                            <div class="div_izquierdo_titulo" style="text-align:right">
-                              <t align="right"><span>Fecha: </span><t t-esc="convertir_fecha_hora(o.scheduled_date)['fecha']" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></t><br/>
-                              <t align="right"><span>Hora: </span><t t-esc="convertir_fecha_hora(o.scheduled_date)['hora']"/></t>
-                            </div>
-                          </div>
-                          <div class="izquierda" style="float:left;">
-                          	<strong style="font-size:18px">Cliente: </strong><br/>
-                              <t t-if="o.partner_id.parent_id">
-                          	    <strong style="font-size:18px; text-align:left"><t t-esc="o.partner_id.parent_id.name"/></strong><br/>
-                          	</t>
-                          	<strong style="font-size:18px; text-align:left"><t t-esc="o.partner_id.name"/></strong><br/>
-                          	<span style="font-size:18px; text-align:left"><t t-esc="o.partner_id.street"/></span>
-                          </div>
-                          <div class="clearfix"/>
-                          <div class="break" style="height:2px"/>
-
-                          <div class="derecha" style="float:right;">
-                          	<strong style="font-size:21px">Nota de entrega  <t t-esc="o.name"/></strong>
-                          </div>
-                          <div class="clearfix"/>
-                          <div class="break" style="height:2px"/>
-                                <table style="width:100%">
-                            	  	<tr style="background:#3D3D3D; color: WHITE">
-                              		<td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>#</strong></td>
-                              		<td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>Número de articulo</strong></td>
-                              		<td colspan="4" style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>Descripción</strong></td>
-                              		<td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>Cantidad</strong></td>
-                            	  	</tr>
-                            	  	<t t-set="cantidad_productos" t-value="0"/>
-                            		<t t-if="o.move_ids_without_package">
-                              	<t t-foreach="o.move_ids_without_package" t-as="l">
-                              	<t t-set="cantidad_productos" t-value="cantidad_productos + 1"/>
-                                	<tr>
-                                  	<td style="text-align:center">
-                                    		<t><t t-esc="cantidad_productos"/></t>
-                                  	</td>
-                                  	<td style="text-align:left">
-                                    		<t t-esc="l.product_id.default_code"/>
-                                  	</td>
-                                  	<td colspan="4" style="text-align:left">
-                                  			<t t-esc="l.product_id.name"/>
-                                  	</td>
-                                  	<td style="text-align:center">
-                                    		<t t-esc="l.quantity_done" t-options="{&quot;widget&quot;: &quot;integer&quot;}"/>
-                                  	</td>
-                                	</tr>
-                              	</t>
-                            		</t>
-                            		<t t-foreach="o.sale_id.order_line" t-as="ol">
-                            		    <t t-if="len(ol.move_ids) == 0">
-                              		    <tr>
-                              		        <td style="text-align:center"><span t-esc="ol.product_uom_qty"/></td>
-                              		        <td style="text-align:left"><span t-esc="ol.product_id.default_code"/></td>
-                              		        <td colspan="4" style="text-align:left"><span t-esc="ol.product_id.name"/></td>
-                              		        <td style="text-align:center"><span t-esc="ol.product_uom_qty" t-options="{&quot;widget&quot;: &quot;integer&quot;}"/></td>
-                              		    </tr>
-                            		    </t>
-                            		</t>
-                                </table>
-                           <br/>
-                           <p align="left">
-                           	<strong>Fecha de vencimiento	<t t-esc="o.sale_id.validity_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></strong><br/>
-                           	Empleado del departamento de ventas:<br/>
-                           	<t t-esc="o.partner_id.name"/><br/>
-                           	Basado en Pedidos de cliente <t t-esc="o.sale_id.name"/>
-                           </p>
-                          <t t-if="contiene_lote(o.move_line_ids_without_package)">
-                          <p style="page-break-after:always;">   </p>
-                          <style>
-                              @import url('https://fonts.cdnfonts.com/css/minion-pro');
-                              div.div_general_encabezado {
-                                  margin:auto;
-                                  margin-top:1px;
-                                  width:100%;
-                                  height:190px;
-                              }
-                              div.div_derecho_titulo {
-                                  margin:auto;
-                                  margin-top:1px;
-                                  width:50%;
-                                  float:right;
-                                  border-color: black;
-                                  border-style: solid;
-                              }
-                              div.div_izquierdo_titulo {
-                                  margin:auto;
-                                  margin-top:1px;
-                                  width:50%;
-                                  float:left;
-                                  border-color: black;
-                                  border-style: solid;
-                              }
-                          </style>
-                          <div class="div_general_encabezado">
-                              <div class="div_izquierdo_titulo">
-                                  <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:75%; overflow: hidden" alt="Logo"/>
-                              </div>
-                              <div class="div_derecho_titulo" style="text-align:right">
-                                  <t align="right"><strong>Fecha: </strong><strong t-esc="convertir_fecha_hora(o.scheduled_date)['fecha']" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></t>
-                              </div>
-                          </div>
-                          <div class="clearfix"/>
-                          <div class="break" style="height:2px"/>
-                          <strong style="font-size:21px"><t t-esc="o.partner_id.name"/><br/></strong>
-                          <span style="font-size:21px"><t t-esc="o.partner_id.street"/><br/><br/></span>
-                          <div class="derecha" style="float:right;">
-                              <strong style="font-size:21px"><t t-esc="o.name"/></strong>
-                          </div>
-                          <div class="izquierda" style="float:left;">
-                              <strong style="font-size:21px">Números de serie en documentos</strong>
-                          </div>
-                          <div class="medio" style="text-align:center;">
-                              <strong style="font-size:21px">Entrega</strong>
-                          </div>
-                          <div class="clearfix"/>
-                          <div class="break" style="height:2px"/>
-                          <t t-if="o.move_ids_without_package">
-                              <t t-foreach="o.move_ids_without_package" t-as="l">
-                                  <t t-if="l.lot_ids">
-                                      <table style="width:100%">
-                                          <tr style="background:#3D3D3D; color: WHITE">
-                                              <td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>#</strong></td>
-                                              <td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>Número de artículo</strong></td>
-                                              <td colspan="4" style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>Descripción</strong></td>
-                                              <td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>Cantidad</strong></td>
-
-                                          </tr>
-                                          <tr>
-                                              <td style="text-align:center; padding-left:5px;">
-                                                  <t><t t-esc="l.id"/></t>
-                                              </td>
-                                              <td style="text-align:left; padding-left:5px;">
-                                                  <t t-esc="l.product_id.default_code"/>
-                                              </td>
-                                              <td colspan="4" style="text-align:left; padding-left:5px;">
-                                                  <t t-esc="l.product_id.name"/>
-                                              </td>
-                                              <td style="text-align:center; padding-left:5px;">
-                                                  <t t-esc="l.quantity_done"/>
-                                              </td>
-
-                                          </tr>
-                                          <tr>
-                                              <td colspan="2" style="text-align:left;  padding-left:5px;">Número de serie</td>
-                                              <td style="text-align:left; padding-left:5px;">Fecha de admisión</td>
-                                              <td style="text-align:left; padding-left:5px;"/>
-                                              <td style="text-align:left; padding-left:5px;"/>
-
-                                              <td style="text-align:left; padding-left:5px;">Almac Det.</td>
-                                              <td style="text-align:left; padding-left:5px;"/>
-                                          </tr>
-                              			<t t-foreach="l.move_line_ids" t-as="l_lote">
-                                          	<tr>
-                                              	<td colspan="2" style="text-align:left; padding-left:5px;"><t t-esc="l_lote.lot_id.name"/></td>
-                                              	<td style="text-align:left; padding-left:5px;"><t t-esc="convertir_fecha_hora_ms(l_lote.lot_id.create_date)['fecha']" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></td>
-                                              	<td style="text-align:left; padding-left:5px;"/>
-                                              	<td style="text-align:left; padding-left:5px;"/>
-
-                                              	<td style="text-align:left; padding-left:5px;"><t t-esc="o.location_id.warehouse_id.no_almacen"/></td>
-                                              	<td style="text-align:left; padding-left:5px;"/>
-                                          </tr>
-                                          </t>
-                                      </table>
-                                      <br/>
-                              	</t>
-                              </t>
-                          </t>
-                          </t>
+  <template id="intecsa.report_nota_entrega">
+      <t t-call="web.html_container">
+         <t t-set="data_report_margin_top" t-value="12"/>
+         <t t-set="data_report_header_spacing" t-value="4"/>
+          <t t-foreach="docs" t-as="o">
+              <div class="article">
+                  <div class="page" style="font-family: 'Minion Pro', sans-serif; font-size:10.25x">
+                      <style>
+                        @import url('https://fonts.cdnfonts.com/css/minion-pro');
+                        div.div_general_encabezado{
+                            margin:auto;
+                            margin-top:1px;
+                            width:100%;
+                            height:190px;
+                        }
+                        div.div_izquierdo_titulo{
+                            margin:auto;
+                            margin-top:1px;
+                            width:50%;
+                            float:right;
+                            border-color: black;
+                            border-style: solid;
+                        }
+                      </style>
+                      <div class="div_general_encabezado">
+                        <div class="div_izquierdo_titulo" style="float:left">
+                          <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:75%; overflow: hidden" alt="Logo"/>
+                        </div>
+                        <div class="div_izquierdo_titulo" style="text-align:right">
+                          <t align="right"><span>Fecha: </span><t t-esc="convertir_fecha_hora(o.scheduled_date)['fecha']" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></t><br/>
+                          <t align="right"><span>Hora: </span><t t-esc="convertir_fecha_hora(o.scheduled_date)['hora']"/></t>
+                        </div>
                       </div>
+                      <div class="izquierda" style="float:left;">
+                      	<strong style="font-size:18px">Cliente: </strong><br/>
+                          <t t-if="o.partner_id.parent_id">
+                      	    <strong style="font-size:18px; text-align:left"><t t-esc="o.partner_id.parent_id.name"/></strong><br/>
+                      	</t>
+                      	<strong style="font-size:18px; text-align:left"><t t-esc="o.partner_id.name"/></strong><br/>
+                      	<span style="font-size:18px; text-align:left"><t t-esc="o.partner_id.street"/></span>
+                      </div>
+                      <div class="clearfix"/>
+                      <div class="break" style="height:2px"/>
+
+                      <div class="derecha" style="float:right;">
+                      	<strong style="font-size:21px">Nota de entrega  <t t-esc="o.name"/></strong>
+                      </div>
+                      <div class="clearfix"/>
+                      <div class="break" style="height:2px"/>
+                            <table style="width:100%">
+                        	  	<tr style="background:#3D3D3D; color: WHITE">
+                          		<td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>#</strong></td>
+                          		<td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>Número de articulo</strong></td>
+                          		<td colspan="4" style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>Descripción</strong></td>
+                          		<td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>Cantidad</strong></td>
+                        	  	</tr>
+                        	  	<t t-set="cantidad_productos" t-value="0"/>
+                        		<t t-if="o.move_ids_without_package">
+                          	<t t-foreach="o.move_ids_without_package" t-as="l">
+                          	<t t-set="cantidad_productos" t-value="cantidad_productos + 1"/>
+                            	<tr>
+                              	<td style="text-align:center">
+                                		<t><t t-esc="cantidad_productos"/></t>
+                              	</td>
+                              	<td style="text-align:left">
+                                		<t t-esc="l.product_id.default_code"/>
+                              	</td>
+                              	<td colspan="4" style="text-align:left">
+                              			<t t-esc="l.product_id.name"/>
+                              	</td>
+                              	<td style="text-align:center">
+                                		<t t-esc="l.quantity_done" t-options="{&quot;widget&quot;: &quot;integer&quot;}"/>
+                              	</td>
+                            	</tr>
+                          	</t>
+                        		</t>
+                        		<t t-foreach="o.sale_id.order_line" t-as="ol">
+                        		    <t t-if="len(ol.move_ids) == 0">
+                          		    <tr>
+                          		        <td style="text-align:center"><span t-esc="ol.product_uom_qty"/></td>
+                          		        <td style="text-align:left"><span t-esc="ol.product_id.default_code"/></td>
+                          		        <td colspan="4" style="text-align:left"><span t-esc="ol.product_id.name"/></td>
+                          		        <td style="text-align:center"><span t-esc="ol.product_uom_qty" t-options="{&quot;widget&quot;: &quot;integer&quot;}"/></td>
+                          		    </tr>
+                        		    </t>
+                        		</t>
+                            </table>
+                       <br/>
+                       <p align="left">
+                       	<strong>Fecha de vencimiento	<t t-esc="o.sale_id.validity_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></strong><br/>
+                       	Empleado del departamento de ventas:<br/>
+                       	<t t-esc="o.partner_id.name"/><br/>
+                       	Basado en Pedidos de cliente <t t-esc="o.sale_id.name"/>
+                       </p>
+                      <t t-if="contiene_lote(o.move_line_ids_without_package)">
+                      <p style="page-break-after:always;">   </p>
+                      <style>
+                          @import url('https://fonts.cdnfonts.com/css/minion-pro');
+                          div.div_general_encabezado {
+                              margin:auto;
+                              margin-top:1px;
+                              width:100%;
+                              height:190px;
+                          }
+                          div.div_derecho_titulo {
+                              margin:auto;
+                              margin-top:1px;
+                              width:50%;
+                              float:right;
+                              border-color: black;
+                              border-style: solid;
+                          }
+                          div.div_izquierdo_titulo {
+                              margin:auto;
+                              margin-top:1px;
+                              width:50%;
+                              float:left;
+                              border-color: black;
+                              border-style: solid;
+                          }
+                      </style>
+                      <div class="div_general_encabezado">
+                          <div class="div_izquierdo_titulo">
+                              <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width:75%; overflow: hidden" alt="Logo"/>
+                          </div>
+                          <div class="div_derecho_titulo" style="text-align:right">
+                              <t align="right"><strong>Fecha: </strong><strong t-esc="convertir_fecha_hora(o.scheduled_date)['fecha']" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></t>
+                          </div>
+                      </div>
+                      <div class="clearfix"/>
+                      <div class="break" style="height:2px"/>
+                      <strong style="font-size:21px"><t t-esc="o.partner_id.name"/><br/></strong>
+                      <span style="font-size:21px"><t t-esc="o.partner_id.street"/><br/><br/></span>
+                      <div class="derecha" style="float:right;">
+                          <strong style="font-size:21px"><t t-esc="o.name"/></strong>
+                      </div>
+                      <div class="izquierda" style="float:left;">
+                          <strong style="font-size:21px">Números de serie en documentos</strong>
+                      </div>
+                      <div class="medio" style="text-align:center;">
+                          <strong style="font-size:21px">Entrega</strong>
+                      </div>
+                      <div class="clearfix"/>
+                      <div class="break" style="height:2px"/>
+                      <t t-if="o.move_ids_without_package">
+                          <t t-foreach="o.move_ids_without_package" t-as="l">
+                              <t t-if="l.lot_ids">
+                                  <table style="width:100%">
+                                      <tr style="background:#3D3D3D; color: WHITE">
+                                          <td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>#</strong></td>
+                                          <td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>Número de artículo</strong></td>
+                                          <td colspan="4" style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>Descripción</strong></td>
+                                          <td style="border-left: 1px solid white; border-right: 1px solid white; text-align:center; padding-left: 8px; padding-right: 8px;"><strong>Cantidad</strong></td>
+
+                                      </tr>
+                                      <tr>
+                                          <td style="text-align:center; padding-left:5px;">
+                                              <t><t t-esc="l.id"/></t>
+                                          </td>
+                                          <td style="text-align:left; padding-left:5px;">
+                                              <t t-esc="l.product_id.default_code"/>
+                                          </td>
+                                          <td colspan="4" style="text-align:left; padding-left:5px;">
+                                              <t t-esc="l.product_id.name"/>
+                                          </td>
+                                          <td style="text-align:center; padding-left:5px;">
+                                              <t t-esc="l.quantity_done"/>
+                                          </td>
+
+                                      </tr>
+                                      <tr>
+                                          <td colspan="2" style="text-align:left;  padding-left:5px;">Número de serie</td>
+                                          <td style="text-align:left; padding-left:5px;">Fecha de admisión</td>
+                                          <td style="text-align:left; padding-left:5px;"/>
+                                          <td style="text-align:left; padding-left:5px;"/>
+
+                                          <td style="text-align:left; padding-left:5px;">Almac Det.</td>
+                                          <td style="text-align:left; padding-left:5px;"/>
+                                      </tr>
+                          			<t t-foreach="l.move_line_ids" t-as="l_lote">
+                                      	<tr>
+                                          	<td colspan="2" style="text-align:left; padding-left:5px;"><t t-esc="l_lote.lot_id.name"/></td>
+                                          	<td style="text-align:left; padding-left:5px;"><t t-esc="convertir_fecha_hora_ms(l_lote.lot_id.create_date)['fecha']" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></td>
+                                          	<td style="text-align:left; padding-left:5px;"/>
+                                          	<td style="text-align:left; padding-left:5px;"/>
+
+                                          	<td style="text-align:left; padding-left:5px;"><t t-esc="o.location_id.warehouse_id.no_almacen"/></td>
+                                          	<td style="text-align:left; padding-left:5px;"/>
+                                      </tr>
+                                      </t>
+                                  </table>
+                                  <br/>
+                          	</t>
+                          </t>
+                      </t>
+                      </t>
                   </div>
-              </t>
+              </div>
           </t>
       </t>
+  </template>
 </odoo>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <t t-name="intecsa.pago_efectuado">
+  <template id="intecsa.pago_efectuado">
           <t t-call="web.html_container">
               <t t-foreach="docs" t-as="o">
                   <div class="article">
@@ -141,5 +141,5 @@
                   </div>
               </t>
           </t>
-      </t>
+      </template>
 </odoo>
