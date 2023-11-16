@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <template id="intecsa.report_entrada_ajustes">
+  <template id="report_entrada_ajustes">
       <t t-call="web.html_container">
           <t t-foreach="docs" t-as="o">
               <div class="article">
