@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="intecsa.comprobante_pago">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="solupaper.intecsa.comprobante_pago" t-lang="o.partner_id.lang"/>
+                <div class="page">
+                    <!-- Encabezado del Reporte -->
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr>
+                            <!-- Informacion de la empresa -->
+                            <td style="width: 60%; background-color: black; color: white;">
+                                <table style="width: 100%; border-collapse: collapse; color: white;">
+                                    <tr>
+                                        <td style="text-align: ;">
+                                          <p style="font-size: 12px; font-weight: bold;">COMPROBANTE DE PAGO</p>
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center; font-size: 18px;">
+                                            <p t-esc="doc.company_id.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: right;">
+                                            <div style="display: inline-block; font-size: 14px;">
+                                                <p t-esc="doc.company_id.street"/>
+                                            </div>
+                                            <div style="display: inline-block; font-size: 14px; margin-left: 20px;">
+                                                <span>PBX: </span><span t-esc="doc.company_id.phone"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width: 20%;">
+                                <img t-if="doc.company_id.logo" 
+                                     t-att-src="image_data_uri(doc.company_id.logo)" 
+                                     style="max-height: 100px; max-width: 100%;"/>
+                            </td>
+                            <td style="width: 20%; background-color: black; color: white;">
+                                <p style="font-weight: bold;" t-esc="doc.name"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Información del Pago -->
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                        <tr>
+                            <td style="width: 50%; vertical-align: top;">
+                                <p><strong>Fecha:</strong> <span t-esc="doc.date"/></p>
+                                <p><strong>Código de Empleado:</strong></p>
+                                <p><strong>Nombre:</strong> <span t-esc="doc.partner_id.name"/></p>
+                                <p><strong>Codigo de pago:</strong></p>
+                                <p><strong>Valor:</strong> <span t-esc="doc.amount"/></p>
+                                <br/>
+                                <p><strong>Concepto:</strong> <span t-esc="doc.payment_method_line_id.name"/></p>
+                                <p><strong>Cantidad en Letras:</strong></p>
+                            </td>
+                            <td style="width: 50%; vertical-align: top;">
+                                <p style="font-size: 16px; text-align: center; font-weight: bold; border-bottom: 1px solid #000;">
+                                    Detalles del Pago
+                                </p>
+                                <p><strong>Banco:</strong> <span t-esc="doc.partner_bank_id.acc_number"/></p>
+                                <p><strong>Numero de doc:</strong> <span t-esc="doc.name"/></p>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Footer con Nombre, Firma y DPI -->
+                    <div style="width: 100%; position: absolute; bottom: 0; left: 0;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td style="width: 33%; text-align: center; border-top: 1px solid #000;">
+                                    <p style="margin-top: 5px;">Nombre de quien recibe</p>
+                                </td>
+                                <td style="width: 33%; text-align: center; border-top: 1px solid #000;">
+                                    <p style="margin-top: 5px;">Firma</p>
+                                </td>
+                                <td style="width: 33%; text-align: center; border-top: 1px solid #000;">
+                                    <p style="margin-top: 5px;">DPI</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+   
+</odoo>
