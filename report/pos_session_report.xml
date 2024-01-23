@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="report_pos_session_template">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="doc">
+        <t t-call="web.external_layout">
+          <style>
+            .page {
+              width: 80mm;
+              margin: auto;
+              
+            }
+            h1{
+              font-size: 30pt;
+              text-align: center;
+              font-weight: bold;
+            }
+            h2{
+              font-size: 30pt;
+              text-align: center;
+            }
+
+            h3{
+              font-size: 15pt;
+              text-align: center;
+            }
+
+            header{
+              font-size: 15pt;
+              text-align: center;
+            }
+          </style>
+          <div class="page">
+                <h1>Cierre de Caja</h1>
+                <h2>SPRINK</h2>
+                <p style="font-size: 10pt; margin-top: 0; margin-bottom: 0; text-align: center; " t-esc="doc.company_id.street"/>
+                <p style="font-size: 10pt; margin-top: 0; margin-bottom: 0; text-align: center;" t-esc="doc.company_id.city"/>
+                <p style="font-size: 10pt; margin-top: 0; margin-bottom: 0; text-align: center;">Email: <span t-field="doc.company_id.email"/></p>
+                <p style="font-size: 10pt; margin-top: 0; margin-bottom: 0; text-align: center;">Website: <span t-field="doc.company_id.website"/></p>
+
+                <div style="text-align: center; margin-top: 5pt; margin-bottom: 5pt;">
+                    ================================
+                </div>
+
+                <table style="width:100%; font-size: 10pt;">
+                        <tr>
+                            <td style="text-align: left; width: 50%;">Cajero:</td>
+                            <td style="text-align: right; width: 50%;"><span t-field="doc.user_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Caja:</td>
+                            <td style="text-align: right;"><span t-field="doc.name"/></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Estado de caja:</td>
+                            <td style="text-align: right;"><span t-field="doc.state"/></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Fecha y hora de inicio:</td>
+                            <td style="text-align: right;"><span t-esc="doc.start_at"/></td>
+                        </tr>
+                    </table>
+
+                <div style="text-align: center; margin-top: 5pt; margin-bottom: 5pt;">
+                    ================================
+                </div>
+
+                <table style="width:100%; font-size: 10pt; margin-top: 10pt;">
+                    <tr>
+                        <td colspan="2" style="text-align: center; font-weight: bold;">Resumen de ventas</td>
+                    </tr>
+                    <t t-foreach="doc.statement_ids" t-as="statement">
+                        <tr>
+                            <td style="text-align: left;">Saldo Apertura:</td>
+                            <td  style="text-align: right;" ><span t-esc="statement.balance_start"/></td>
+                        </tr>
+                    </t>
+
+                   <t t-set="total_ventas" t-value="0"/>
+                    <t t-foreach="doc.order_ids" t-as="order">
+                        <t t-set="total_ventas" t-value="total_ventas + order.amount_total"/>
+                    </t>
+                    <tr>
+                        <td style="text-align: left;">Ventas:</td>
+                        <td style="text-align: right;"><span t-esc="total_ventas"/></td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align: left;">IVA:</td>
+                        <td style="text-align: right;"><span t-esc="iva"/></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Devoluciones:</td>
+                        <td style="text-align: right;"><span t-esc="devoluciones"/></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Importe descuento:</td>
+                        <td style="text-align: right;"><span t-esc="importe_descuento"/></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Cantidad total:</td>
+                        <td style="text-align: right;"><span t-esc="cantidad_total"/></td>
+                    </tr>
+                </table>
+
+                 <div style="text-align: center; margin-top: 5pt; margin-bottom: 5pt;">
+                    ================================
+                </div>
+
+                <table style="width:100%; font-size: 10pt; margin-top: 10pt;">
+                    <tr>
+                        <td colspan="2" style="text-align: center; font-weight: bold;">Detalles del resumen de ventas</td>
+                    </tr>
+                    <t t-set="unidades_totales" t-value="0"/>
+                    <t t-set="total_transacciones" t-value="0"/>
+                    <t t-foreach="doc.order_ids" t-as="order">
+                        <t t-set="unidades_totales" t-value="unidades_totales + sum(line.qty for line in order.lines)"/>
+                        <t t-set="total_transacciones" t-value="total_transacciones + 1"/>
+                    </t>
+                    <tr>
+                        <td style="text-align: left;">Unidades totales vendidas:</td>
+                        <td style="text-align: right;"><span t-esc="unidades_totales"/></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Total transacciones:</td>
+                        <td style="text-align: right;"><span t-esc="total_transacciones"/></td>
+                    </tr>
+                </table>
+
+
+                 <div style="text-align: center; margin-top: 5pt; margin-bottom: 5pt;">
+                    ================================
+                </div>
+
+                <table style="width:100%; font-size: 10pt; margin-top: 10pt;">
+                    <tr>
+                        <td colspan="3" style="text-align: center; font-weight: bold;">Cobro de pagos</td>
+                    </tr>
+                    <tr>
+                        <td>Método</td>
+                        <td>Cant.</td>
+                        <td>Monto</td>
+                    </tr>
+                    
+                    <t t-foreach="metodos_de_pago" t-as="metodo">
+                        <tr>
+                            <td><span t-esc="metodo.nombre"/></td>
+                            <td><span t-esc="metodo.cantidad"/></td>
+                            <td><span t-esc="metodo.monto"/></td>
+                        </tr>
+                    </t>
+                    
+                    <tr>
+                        <td>Total</td>
+                        <td><span t-esc="total_cantidad"/></td>
+                        <td><span t-esc="total_monto"/></td>
+                    </tr>
+                </table>
+
+                 <div style="text-align: center; margin-top: 5pt; margin-bottom: 5pt;">
+                    ================================
+                </div>
+                     <h3>GRACIAS!</h3>
+
+            </div>
+        </t>
+      </t>
+    </t>
+  </template>
+</odoo>

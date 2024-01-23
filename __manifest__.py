@@ -21,6 +21,7 @@
         'report/pago_entrada.xml',
         'report/pago_efectuado.xml',
         'report/comprobante_pago.xml',
+        'report/pos_session_report.xml',
         'security/groups.xml',
         'views/report.xml',
         'data/globatronics_report_data.xml',
