@@ -50,7 +50,7 @@
                         <tr>
                             <td style="width: 50%; vertical-align: top;">
                                 <p><strong>Fecha:</strong> <span t-esc="doc.date"/></p>
-                                <p><strong>Código de Empleado:</strong></p>
+                                <p><strong>Codigo de Empleado:</strong></p>
                                 <p><strong>Nombre:</strong> <span t-esc="doc.partner_id.name"/></p>
                                 <p><strong>Codigo de pago:</strong></p>
                                 <p><strong>Valor:</strong> <span t-esc="doc.amount"/></p>
@@ -68,6 +68,24 @@
                         </tr>
                     </table>
 
+                    <div style="font-size: 75%; position: absolute; top: 15cm; left: 5cm">
+                        GUATEMALA, <span t-field="doc.date"/>
+                    </div>
+                    <div style="font-size: 75%; position: absolute; top: 15cm; left: 16.2cm">
+                        <span t-esc="'{0:,.2f}'.format(doc.amount)"/>
+                    </div>
+
+                    <!-- Adjust the top and left values to move the name field into the correct position -->
+                    <div style="font-size: 75%; position: absolute; top: 15.5cm; left: 5cm; width: 15cm">
+                        <span t-esc="doc.partner_id.name"/>
+                    </div>
+
+                    <!-- Adjust the top and left values to move the amount in letters into the correct position -->
+                    <div style="font-size: 75%; position: absolute; top: 16cm; left: 5cm; width: 15cm">
+                        <span t-esc="doc.amount"/>
+                    </div>
+
+                    
                     <!-- Footer con Nombre, Firma y DPI -->
                     <div style="width: 100%; position: absolute; bottom: 0; left: 0;">
                         <table style="width: 100%; border-collapse: collapse;">
