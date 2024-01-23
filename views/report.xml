@@ -72,5 +72,27 @@
                 <field name="binding_model_id" ref="account.model_account_payment"/>
                 <field name="binding_type">report</field>
         </record>
+
+
+        <record id="report_comprobante_pago" model="ir.actions.report">
+            <field name="name">Comprobante de Pago</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">intecsa.comprobante_pago</field>
+            <field name="report_file">intecsa.comprobante_pago</field>
+            <field name="binding_model_id" ref="account.model_account_payment"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="report_pos_session" model="ir.actions.report">
+                <field name="name">Reporte de Sesión POS</field>
+                <field name="model">pos.session</field>
+                <field name="report_type">qweb-pdf</field>
+                <field name="report_name">intecsa.report_pos_session_template</field>
+                <field name="report_file">intecsa.report_pos_session_template</field>
+                <field name="binding_model_id" ref="point_of_sale.model_pos_session"/>
+                <field name="binding_type">report</field>
+        </record>
+        
     </data>
 </odoo>
