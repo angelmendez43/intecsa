@@ -17,3 +17,4 @@ class ResPartner(models.Model):
 
 
     codigo = fields.Char(string='Código')
+    caja_chica = fields.Boolean(srring="Caja chica")
