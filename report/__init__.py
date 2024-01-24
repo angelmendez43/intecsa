@@ -8,3 +8,4 @@ from . import report_nota_entrega
 from . import pago_entrada
 from . import pago_efectuado
 from . import pos_session_report
+from . import comprobante_pago
