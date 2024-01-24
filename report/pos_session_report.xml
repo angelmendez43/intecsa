@@ -3,12 +3,12 @@
   <template id="report_pos_session_template">
     <t t-call="web.html_container">
       <t t-foreach="docs" t-as="doc">
-        <t t-call="web.external_layout">
+        <div class="article">
           <style>
             .page {
               width: 80mm;
               margin: auto;
-              
+
             }
             h1{
               font-size: 30pt;
@@ -72,34 +72,40 @@
                     <t t-foreach="doc.statement_ids" t-as="statement">
                         <tr>
                             <td style="text-align: left;">Saldo Apertura:</td>
-                            <td  style="text-align: right;" ><span t-esc="statement.balance_start"/></td>
+                            <td  style="text-align: right;" ><span t-esc="statement.balance_start" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
                         </tr>
                     </t>
 
                    <t t-set="total_ventas" t-value="0"/>
+                   <t t-set="iva" t-value="0"/>
+                   <t t-set="devoluciones" t-value="0"/>
+                   <t t-set="importe_descuento" t-value="0"/>
+                   <t t-set="cantidad_total" t-valuw="0"/>
                     <t t-foreach="doc.order_ids" t-as="order">
                         <t t-set="total_ventas" t-value="total_ventas + order.amount_total"/>
+                        <t t-set="iva" t-value="iva + order.amount_tax"/>
                     </t>
                     <tr>
                         <td style="text-align: left;">Ventas:</td>
-                        <td style="text-align: right;"><span t-esc="total_ventas"/></td>
+                        <td style="text-align: right;"><span t-esc="total_ventas" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
                     </tr>
 
                     <tr>
                         <td style="text-align: left;">IVA:</td>
-                        <td style="text-align: right;"><span t-esc="iva"/></td>
+                        <td style="text-align: right;"><span t-esc="iva" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
                     </tr>
                     <tr>
                         <td style="text-align: left;">Devoluciones:</td>
-                        <td style="text-align: right;"><span t-esc="devoluciones"/></td>
+                        <td style="text-align: right;"><span t-esc="devoluciones" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
                     </tr>
                     <tr>
                         <td style="text-align: left;">Importe descuento:</td>
-                        <td style="text-align: right;"><span t-esc="importe_descuento"/></td>
+                        <td style="text-align: right;"><span t-esc="importe_descuento" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
                     </tr>
+                    <t t-set="cantidad_total" t-value="total_ventas - iva"/>
                     <tr>
                         <td style="text-align: left;">Cantidad total:</td>
-                        <td style="text-align: right;"><span t-esc="cantidad_total"/></td>
+                        <td style="text-align: right;"><span t-esc="cantidad_total" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
                     </tr>
                 </table>
 
@@ -141,19 +147,19 @@
                         <td>Cant.</td>
                         <td>Monto</td>
                     </tr>
-                    
+
                     <t t-foreach="metodos_de_pago" t-as="metodo">
                         <tr>
                             <td><span t-esc="metodo.nombre"/></td>
                             <td><span t-esc="metodo.cantidad"/></td>
-                            <td><span t-esc="metodo.monto"/></td>
+                            <td><span t-esc="metodo.monto" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
                         </tr>
                     </t>
-                    
+                    <t t-set="total_monto" t-value="total_ventas"/>
                     <tr>
                         <td>Total</td>
                         <td><span t-esc="total_cantidad"/></td>
-                        <td><span t-esc="total_monto"/></td>
+                        <td><span t-esc="total_monto" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
                     </tr>
                 </table>
 
@@ -163,7 +169,7 @@
                      <h3>GRACIAS!</h3>
 
             </div>
-        </t>
+        </div>
       </t>
     </t>
   </template>

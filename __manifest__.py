@@ -12,6 +12,7 @@
     'depends': ['base','sale','purchase', 'project', 'web_studio', 'industry_fsm_report','stock','account','account_reports','account_gt'],
     'data': [
         'views/res_partner_views.xml',
+        'data/paperformat_ticket.xml',
         'views/report_financial.xml',
         'views/account_journal_views.xml',
         'report/cotizacion_sale_order.xml',
