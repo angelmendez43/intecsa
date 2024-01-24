@@ -50,43 +50,42 @@
                         <tr>
                             <td style="width: 50%; vertical-align: top;">
                                 <p><strong>Fecha:</strong> <span t-esc="doc.date"/></p>
-                                <p><strong>Codigo de Empleado:</strong></p>
+                                <p><strong>Codigo de Empleado:</strong> <span t-esc="doc.partner_id.codigo"/></p>
                                 <p><strong>Nombre:</strong> <span t-esc="doc.partner_id.name"/></p>
                                 <p><strong>Codigo de pago:</strong></p>
-                                <p><strong>Valor:</strong> <span t-esc="doc.amount"/></p>
+                                <p><strong>Valor:</strong> <span t-esc="doc.company_id.currency_id.symbol"/> <span t-esc="'{0:,.2f}'.format(doc.amount)"/></p>
                                 <br/>
                                 <p><strong>Concepto:</strong> <span t-esc="doc.payment_method_line_id.name"/></p>
-                                <p><strong>Cantidad en Letras:</strong></p>
+                                <p><strong>Cantidad en Letras:</strong><span t-esc="a_letras(doc.amount)"/></p>
                             </td>
                             <td style="width: 50%; vertical-align: top;">
                                 <p style="font-size: 16px; text-align: center; font-weight: bold; border-bottom: 1px solid #000;">
                                     Detalles del Pago
                                 </p>
-                                <p><strong>Banco:</strong> <span t-esc="doc.partner_bank_id.acc_number"/></p>
+                                <p><strong>Banco:</strong> <span t-esc="doc.journal_id.bank_id.name"/></p>
                                 <p><strong>Numero de doc:</strong> <span t-esc="doc.name"/></p>
                             </td>
                         </tr>
                     </table>
 
-                    <div style="font-size: 75%; position: absolute; top: 15cm; left: 5cm">
+                    <div style="font-size: 10pt; position: absolute; top: 15cm; left: 5cm">
                         GUATEMALA, <span t-field="doc.date"/>
                     </div>
-                    <div style="font-size: 75%; position: absolute; top: 15cm; left: 16.2cm">
-                        <span t-esc="'{0:,.2f}'.format(doc.amount)"/>
+                    <div style="font-size: 10pt; position: absolute; top: 15cm; left: 16.2cm">
+                         <span t-esc="doc.company_id.currency_id.symbol"/> <span t-esc="'{0:,.2f}'.format(doc.amount)"/>
                     </div>
 
-                    <!-- Adjust the top and left values to move the name field into the correct position -->
-                    <div style="font-size: 75%; position: absolute; top: 15.5cm; left: 5cm; width: 15cm">
+                   
+                    <div style="font-size: 10pt; position: absolute; top: 15.5cm; left: 5cm; width: 15cm">
                         <span t-esc="doc.partner_id.name"/>
                     </div>
 
-                    <!-- Adjust the top and left values to move the amount in letters into the correct position -->
-                    <div style="font-size: 75%; position: absolute; top: 16cm; left: 5cm; width: 15cm">
-                        <span t-esc="doc.amount"/>
+                    <div style="font-size: 10pt; position: absolute; top: 16cm; left: 5cm; width: 15cm">
+                       <span t-esc="a_letras(doc.amount)"/>
                     </div>
 
                     
-                    <!-- Footer con Nombre, Firma y DPI -->
+                   
                     <div style="width: 100%; position: absolute; bottom: 0; left: 0;">
                         <table style="width: 100%; border-collapse: collapse;">
                             <tr>
