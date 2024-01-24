@@ -30,8 +30,10 @@
                 </t>
                 <t t-if="report.get('name') == 'Vencido por cobrar' ">
                     <div class="print_only">
-                        <img t-att-src="image_data_uri(report.get('company').logo)" style="width:15%; overflow: hidden" alt="Logo"/>
-                        <div><h4>INFORME DE SEGUIMIENTO DE COBRO</h4></div>
+                        <div class="row print_only" style='margin-top: 20px; margin-bottom: 10px;'>
+                        <img t-att-src="image_data_uri(report.get('company').logo)" style="width:25%; overflow: hidden" alt="Logo"/>
+                        </div>
+                        <div><h5>INFORME DE SEGUIMIENTO DE COBRO</h5></div>
                         <t t-call="intecsa.filter_info_template_gt"/>
                     </div>
                 </t>
