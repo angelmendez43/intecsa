@@ -67,7 +67,6 @@
                                           <td style="text-align:center;"><strong>Doc. pagado</strong></td>
                                           <td style="text-align:center;"><strong>Nº documento</strong></td>
                                           <td style="text-align:center;"><strong>Fecha</strong></td>
-                                          <td style="text-align:center;"><strong>Número de referencia</strong></td>
                                           <td style="text-align:center;"><strong>Factura proveedor</strong></td>
                                           <td style="text-align:center;"><strong>Importe</strong></td>
                                       </tr>
@@ -86,9 +85,7 @@
                                           <td style="text-align:center;">
                                               <t t-esc="l.invoice_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
                                           </td>
-                                          <td style="text-align:center;">
-                                              Pendiente
-                                          </td>
+                                         
                                           <td style="text-align:center;">
                                               <t t-esc="l.fel_serie"/> - <t t-esc="l.fel_numero"/>
                                           </td>
@@ -103,7 +100,7 @@
                       <div class="izquierda" style="float:left;">
                   	<p align="left">
                        	Fecha de transferencia	:	<t t-esc="o.date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/><br/>
-                       	No. de transferencia	:	<t t-es="o.ref"/><br/>
+                       	Transacción	: <t t-esc="o.ref"/><br/>
                       </p>
                       </div>
                       <div class="derecha" style="float:right;">
