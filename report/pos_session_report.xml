@@ -31,6 +31,7 @@
             }
           </style>
           <div class="page">
+                <t t-set="pagos_resumen" t-value="pagos_agrupados(doc)"/>  
                 <h1>Cierre de Caja</h1>
                 <h2>SPRINK</h2>
                 <p style="font-size: 10pt; margin-top: 0; margin-bottom: 0; text-align: center; " t-esc="doc.company_id.street"/>
@@ -148,11 +149,11 @@
                         <td>Monto</td>
                     </tr>
 
-                    <t t-foreach="metodos_de_pago" t-as="metodo">
+                    <t t-foreach="pagos_resumen" t-as="metodo">
                         <tr>
-                            <td><span t-esc="metodo.nombre"/></td>
-                            <td><span t-esc="metodo.cantidad"/></td>
-                            <td><span t-esc="metodo.monto" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                            <td><span t-esc="pagos_resumen[metodo]['metodo_pago']"/></td>
+                            <td><span t-esc="pagos_resumen[metodo]['cantidad']"/></td>
+                            <td><span t-esc="pagos_resumen[metodo]['total']" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
                         </tr>
                     </t>
                     <t t-set="total_monto" t-value="total_ventas"/>
