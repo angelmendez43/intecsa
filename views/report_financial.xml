@@ -118,7 +118,7 @@
             </div>
             <div class="col-12">
                 <t t-if="options.get('partner_ids') != None">
-                    Cliente:
+                    CLIENTE:
                     <t t-set="res_partner_value">All</t>
                     <t t-foreach="options['selected_partner_ids']" t-as="partner_name">
                         <t t-set="res_partner_value" t-value="''"/>
