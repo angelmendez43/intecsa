@@ -8,7 +8,7 @@
           <field name="report_type">qweb-pdf</field>
           <field name="report_name">intecsa.cotizacion_sale_order</field>
           <field name="report_file">intecsa.cotizacion_sale_order</field>
-          <field name="print_report_name"></field>
+          <field name="print_report_name">'Cotización - %s' % (object.name)</field>
           <field name="binding_model_id" ref="sale.model_sale_order"/>
           <field name="binding_type">report</field>
       </record>
@@ -90,6 +90,7 @@
                 <field name="report_type">qweb-pdf</field>
                 <field name="report_name">intecsa.report_pos_session_template</field>
                 <field name="report_file">intecsa.report_pos_session_template</field>
+                <field name="print_report_name">'Reporte de sesión - %s' % (object.name)</field>
                 <field name="binding_model_id" ref="point_of_sale.model_pos_session"/>
                 <field name="binding_type">report</field>
                 <field name="paperformat_id" ref="paperformat_ticket"/>
