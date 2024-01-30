@@ -27,7 +27,9 @@
         'data/globatronics_report_data.xml',
         'views/sale_order_views.xml',
         'views/stock_picking_views.xml',
-        'views/res_bank_views.xml'
+        'views/res_bank_views.xml',
+        'views/account_payment_views.xml'
+        
     ],
     'assets':{},
     'installable': True,

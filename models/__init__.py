@@ -7,3 +7,4 @@ from . import stock_picking
 from . import res_partner_bank
 from . import account_journal
 from . import pos_session
+from . import account_payment
