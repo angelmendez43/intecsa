@@ -28,7 +28,7 @@
         'views/sale_order_views.xml',
         'views/stock_picking_views.xml',
         'views/res_bank_views.xml',
-        'views/account_payment_views.xml'
+        'wizard/account_payment_register.xml'
         
     ],
     'assets':{},

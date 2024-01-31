@@ -1,0 +1,12 @@
+<odoo>
+    <record id="account_payment_register_form_inherit_descripcion" model="ir.ui.view">
+        <field name="name">account.payment.register.form.inherit.descripcion</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="account.view_account_payment_register_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_bank_id']" position="after">
+                <field name="descripcion"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
