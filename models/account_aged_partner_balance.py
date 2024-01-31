@@ -183,4 +183,5 @@ class ReportAccountAgedPartner(models.AbstractModel):
                 self._field_column('amount_currency'),
                 self._field_column('currency_id'),
             ]
+
         return columns
