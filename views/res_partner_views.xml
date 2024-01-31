@@ -10,6 +10,7 @@
             <field name="vat" position="after">
                 <br/>
                 <field name="codigo" string="Código"/>
+                <field name="caja_chica"/>
             </field>
           </field>
       </record>
