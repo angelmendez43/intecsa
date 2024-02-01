@@ -42,6 +42,9 @@
                               <t align="right"><strong>Fecha: </strong><strong t-esc="o.date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></t>
                           </div>
                       </div>
+                      <div style="text-align:center; width:100%; font-size:30px; font-weight:bold; margin-bottom:20px;">
+                                RECIBO DE CAJA
+                      </div>
                       <div class="clearfix"/>
                       <div class="break" style="height:2px"/>
                       <div class="izquierdaC" style="float:left;">
