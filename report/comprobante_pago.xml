@@ -67,6 +67,9 @@
                         </tr>
                     </table>
 
+                    <div style="position: absolute; top: 13.5cm; left: 6.5cm; width: 33%; text-align: center; border-top: 1px solid #000;">
+                        
+                    </div>
                     <div style="font-size: 10pt; position: absolute; top: 15cm; left: 8.5cm">
                         GUATEMALA, <span t-field="doc.date"/>
                     </div>
@@ -83,6 +86,9 @@
                        <span t-esc="a_letras(doc.amount).upper()"/>
                     </div>
 
+                    <div style="position: absolute; top: 18cm; left: 6.5cm; width: 33%; text-align: center; border-top: 1px solid #000;">
+                        
+                    </div>
                     
                    
                     <div style="width: 100%; position: absolute; bottom: 0; left: 0;">
