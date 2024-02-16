@@ -1,7 +1,7 @@
 from odoo import api, models
 import logging
 class ComprobantePagoReport(models.AbstractModel):
-    _name = 'report.intecsa.comprobante_pago'
+    _name = 'report.intecsa.intecsa_comprobante_pago_wrapper'
     _description = 'Reporte de Comprobante de Pago'
 
     def num_a_letras(self, num, completo=True):
