@@ -67,28 +67,25 @@
                         </tr>
                     </table>
 
-                    <div style="position: absolute; top: 13.5cm; left: 6.5cm; width: 33%; text-align: center; border-top: 1px solid #000;">
-                        
-                    </div>
-                    <div style="font-size: 10pt; position: absolute; top: 15cm; left: 8.5cm">
+                   
+                    <div style="font-size: 10pt; position: absolute; top: 15.5cm; left: 8.5cm">
                         GUATEMALA, <span t-field="doc.date"/>
                     </div>
-                    <div style="font-size: 10pt; position: absolute; top: 15cm; left: 19.8cm">
+                    
+                    <div style="font-size: 10pt; position: absolute; top: 15.5cm; left: 19.8cm">
                          <span t-esc="'{0:,.2f}'.format(doc.amount)"/>
                     </div>
 
                    
-                    <div style="font-size: 10pt; position: absolute; top: 15.6cm; left: 7cm; width: 15cm">
+                    <div style="font-size: 10pt; position: absolute; top: 16.2cm; left: 7.3cm; width: 15cm">
                         <span t-esc="doc.partner_id.name.upper()"/>
                     </div>
 
-                    <div style="font-size: 10pt; position: absolute; top: 16.5cm; left: 6.5cm; width: 15cm">
+                    <div style="font-size: 10pt; position: absolute; top: 16.9cm; left: 6.8cm; width: 15cm">
                        <span t-esc="a_letras(doc.amount).upper()"/>
                     </div>
 
-                    <div style="position: absolute; top: 18cm; left: 6.5cm; width: 33%; text-align: center; border-top: 1px solid #000;">
-                        
-                    </div>
+                    
                     
                    
                     <div style="width: 100%; position: absolute; bottom: 0; left: 0;">
@@ -107,6 +104,14 @@
                         </table>
                     </div>
                 </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="intecsa_comprobante_pago_wrapper">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="intecsa.comprobante_pago" t-lang="doc.partner_id.lang"/>
             </t>
         </t>
     </template>
