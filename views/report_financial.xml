@@ -150,12 +150,14 @@
                     <t t-esc="selected_filter_name"/>
                 </t>
             </div>
+            <!--
             <div class="col-12">
                 <t t-if="options.get('groupby_fields') and any(opt['selected'] for opt in options['groupby_fields'])">
                     Groupby:
                     <t t-esc="' '.join(opt['name'] for opt in options['groupby_fields'] if opt['selected'])"/>
                 </t>
-            </div>
+            </div> 
+            -->
             <div class='col-12'>
                 <t t-if="options.get('company_currency')">
                     Company Currency: <t t-esc="options['company_currency']['currency_name']"/>
