@@ -67,24 +67,24 @@
             <field name="field_description">Firma del Tecnico</field>
             <field name="model_id" model="ir.model" eval="obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.id"/>
         </record>
-        <record id="intecsa_worksheet_template2_form_inherit" model="ir.ui.view">
+        <!-- <record id="intecsa_worksheet_template2_form_inherit" model="ir.ui.view">
             <field name="name">intecsa.worksheet.template2.form.inherit</field>
             <field name="type">form</field>
             <field name="model" model="ir.model" eval="obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.model"/>
-            <field name="inherit_id" model="ir.ui.view" search="[('name','ilike', obj().env.ref('industry_fsm_report.fsm_worksheet_template').model_id.model),('type', '=', 'form')]"/>
+            <field name="inherit_id" ref="industry_fsm_report.fsm_worksheet_template_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//form/sheet" position="replace">
+                <xpath expr="//sheet" position="replace"> 
                     <sheet>
                         <group invisible="context.get('studio') or context.get('default_x_project_task_id')">
                             <field name="x_project_task_id" domain="[('is_fsm', '=', True)]"/>
                         </group>
                         <group class="o_fsm_worksheet_form">
-                        	<field name="x_fecha"/>
-                        	<field name="x_tiempo_instalacion"/>
-                        	<field name="x_equipo"/>
-                        	<field name="x_instalacion"/>
-                        	<field name="x_servicio_tecnico"/>
-                        	<field name="x_trabajo_realizado"/>
+                            <field name="x_fecha"/>
+                            <field name="x_tiempo_instalacion"/>
+                            <field name="x_equipo"/>
+                            <field name="x_instalacion"/>
+                            <field name="x_servicio_tecnico"/>
+                            <field name="x_trabajo_realizado"/>
                             <field name="x_repuestos_utilizados"/>
                             <field name="x_nombre_cliente"/>
                             <field name="x_firma_cliente" widget="signature"/>
@@ -94,6 +94,6 @@
                     </sheet>
                 </xpath>
             </field>
-        </record>
+        </record> -->
     </data>
 </odoo>

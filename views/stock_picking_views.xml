@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-
-      <record id="intecsa_view_warehouse" model="ir.ui.view">
-          <field name="name">intecsa.view_warehouse</field>
-          <field name="model">stock.warehouse</field>
-          <field name="inherit_id" ref="stock.view_warehouse" />
-          <field name="arch" type="xml">
-            <field name="code" position="after">
-                <field name="no_almacen" string="Número almacén"/>
+        <record id="intecsa_view_warehouse" model="ir.ui.view">
+            <field name="name">intecsa.view_warehouse</field>
+            <field name="model">stock.warehouse</field>
+            <field name="inherit_id" ref="stock.view_warehouse" />
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="no_almacen" string="Número almacén"/>
+                </field>
             </field>
-          </field>
-      </record>
-
-      <record id="intecsa_view_picking_form" model="ir.ui.view">
-          <field name="name">intecsa.stock.picking.form</field>
-          <field name="model">stock.picking</field>
-          <field name="inherit_id" ref="stock.view_picking_form" />
-          <field name="groups_id" eval="[(6,0,[ref('intecsa.grupo_validar_picking')])]"/>
-          <field name="arch" type="xml">
-              <button name="button_validate" position="replace"/>
-          </field>
-      </record>
-
+        </record>
+        <record id="intecsa_view_picking_form" model="ir.ui.view">
+            <field name="name">intecsa.stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='button_validate']" position="attributes">
+                    <attribute name="groups">intecsa.grupo_validar_picking</attribute>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>
